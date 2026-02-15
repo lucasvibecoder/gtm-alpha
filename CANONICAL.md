@@ -2,7 +2,7 @@
 
 **Rule:** If a file isn't listed here, it doesn't exist in the system.
 
-Last updated: 2026-02-15 (Phase 4)
+Last updated: 2026-02-15 (Phase 5)
 
 ---
 
@@ -48,12 +48,12 @@ Last updated: 2026-02-15 (Phase 4)
 
 ## Layer 4: Learning Engine
 
-No modules built yet. Templates and prompts will be added in Phase 5.
-
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| Outcome Log Template | — | Module 4A placeholder | `templates/` (TBD — Phase 5) |
-| Pattern Library | — | Module 4C placeholder | `templates/` (TBD — Phase 5) |
+| Outcome Log Template | v1.0 | Module 4A — Empty JSON array for per-touch outcome tracking — Active | `templates/outcome-log.json` |
+| Signal Performance Updater (Skill) | v1.0 | Module 4B — Analyzes outcome data, updates signal scores, identifies variant winners, kill/promote signals — Active | `skills/signal-performance-updater/SKILL.md` |
+| Performance Update Template | v1.0 | Output structure for Module 4B reports | `skills/signal-performance-updater/references/PERFORMANCE_UPDATE_TEMPLATE.md` |
+| Pattern Library | v1.0 | Module 4C — Cross-client pattern library (signal archetypes, PVP formats, objection frameworks) — Active | `templates/pattern-library.md` |
 
 ---
 
@@ -64,8 +64,8 @@ No modules built yet. Templates and prompts will be added in Phase 5.
 | Call Extraction Schema | v2.0 | Tier 1/Tier 2 schema, full enum registry, data flow, zero unresolved breaking changes — Active | `contracts/call-extraction-schema.md` |
 | Signal Scorecard | v1.0 | Scored signal output format for Module 1A — Active | `contracts/signal-scorecard.md` |
 | Detection Spec | v1.0 | Signal detection specification format — Active | `contracts/detection-spec.md` |
-| Outcome Log | v1.0 | Outbound outcome tracking format for Module 4A | `contracts/outcome-log.md` |
-| Performance Update | v1.0 | Signal score update format for Module 4B | `contracts/performance-update.md` |
+| Outcome Log | v2.0 | Per-touch outcome tracking schema with enums, natural language input support — Active | `contracts/outcome-log.md` |
+| Performance Update | v2.0 | 5-section performance update format with score update rules, variant analysis, kill/promote criteria — Active | `contracts/performance-update.md` |
 
 ---
 
