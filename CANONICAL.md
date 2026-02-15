@@ -2,7 +2,7 @@
 
 **Rule:** If a file isn't listed here, it doesn't exist in the system.
 
-Last updated: 2026-02-15 (Phase 5)
+Last updated: 2026-02-15 (Phase 6 — Final)
 
 ---
 
@@ -12,6 +12,7 @@ Last updated: 2026-02-15 (Phase 5)
 |------|---------|------|----------|
 | System Build Plan | v1.0 | Master blueprint for all build phases | `SYSTEM_BUILD_PLAN.md` |
 | Canonical Manifest | v1.0 | This file. Lists every active file and its role. | `CANONICAL.md` |
+| README | v1.0 | System overview, module reference, quick start guide | `README.md` |
 
 ---
 
@@ -20,7 +21,7 @@ Last updated: 2026-02-15 (Phase 5)
 | File | Version | Role | Location |
 |------|---------|------|----------|
 | Vendor Intelligence Brief (Skill) | v3.0 | Module 1A + 1B — Generates scored intelligence brief with signal validation, scoring, and detection specs | `skills/vendor-intelligence-brief/SKILL.md` |
-| Brief Output Template | v3.0 | Output structure for Module 1A (includes signal scoring + detection spec tables, no Strategic Recommendations section) | `skills/vendor-intelligence-brief/references/PROMPT_TEMPLATE.md` |
+| Brief Output Template | v3.0 | Output structure for Module 1A (includes signal scoring + detection spec tables) | `skills/vendor-intelligence-brief/references/PROMPT_TEMPLATE.md` |
 | Example Brief (Bobyard) | v1.0 | Reference example of a completed brief | `skills/vendor-intelligence-brief/references/example-brief-bobyard.md` |
 | Example Signal Validation | v1.0 | Reference example of deep signal validation | `skills/vendor-intelligence-brief/references/example-signal-validation.md` |
 
@@ -30,9 +31,11 @@ Last updated: 2026-02-15 (Phase 5)
 
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| Call Intelligence Extractor | v2.0 | Module 2A — Clay/Sonnet prompt with Tier 1/Tier 2 extraction split — Active | `prompts/call-intelligence-extractor/PROMPT.md` |
-| Call Intelligence Synthesis | v2.0 | Module 2B — 7-section compressed synthesis, Tier 2-aware — Active | `prompts/call-intelligence-synthesis/PROMPT.md` |
-| Signal & Messaging Reconciliation | v2.0 | Module 2C — 5-section net-new intelligence, signal score updates, re-scored signal list — Active | `prompts/reconciliation/PROMPT.md` |
+| Call Intelligence Extractor (Prompt) | v2.0 | Module 2A — Clay/Sonnet prompt with Tier 1/Tier 2 extraction split — Active | `prompts/call-intelligence-extractor/PROMPT.md` |
+| Call Intelligence Synthesis (Skill) | v2.0 | Module 2B — 7-section compressed synthesis, Tier 2-aware — Active | `skills/call-intelligence-synthesis/SKILL.md` |
+| Call Intelligence Synthesis Template | v2.0 | Prompt template for Module 2B | `skills/call-intelligence-synthesis/references/PROMPT_TEMPLATE.md` |
+| Signal & Messaging Reconciliation (Skill) | v2.0 | Module 2C — 5-section net-new intelligence, signal score updates, re-scored signal list — Active | `skills/reconciliation/SKILL.md` |
+| Reconciliation Template | v2.0 | Prompt template for Module 2C | `skills/reconciliation/references/PROMPT_TEMPLATE.md` |
 
 ---
 
@@ -40,8 +43,9 @@ Last updated: 2026-02-15 (Phase 5)
 
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| Play Design & PVP Architecture | v3.0 | Module 3A — Executable plays with signal detection, A/B variants, outcome tracking, PVP specs — Active | `prompts/play-design/PROMPT.md` |
-| PVP Generator (Skill) | v1.0 | Module 3B — Produces actual PVP deliverables (competitive audits, signal analyses, benchmarks) from PVP specs — Active | `skills/pvp-generator/SKILL.md` |
+| Play Design & PVP Architecture (Skill) | v3.0 | Module 3A — Executable plays with signal detection, A/B variants, outcome tracking, PVP specs — Active | `skills/play-design/SKILL.md` |
+| Play Design Template | v3.0 | Prompt template for Module 3A | `skills/play-design/references/PROMPT_TEMPLATE.md` |
+| PVP Generator (Skill) | v1.0 | Module 3B — Produces actual PVP deliverables from PVP specs — Active | `skills/pvp-generator/SKILL.md` |
 | PVP Output Template | v1.0 | Output structure for Module 3B deliverables | `skills/pvp-generator/references/PVP_OUTPUT_TEMPLATE.md` |
 
 ---
@@ -61,11 +65,21 @@ Last updated: 2026-02-15 (Phase 5)
 
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| Call Extraction Schema | v2.0 | Tier 1/Tier 2 schema, full enum registry, data flow, zero unresolved breaking changes — Active | `contracts/call-extraction-schema.md` |
+| Call Extraction Schema | v2.0 | Tier 1/Tier 2 schema, full enum registry, data flow — Active | `contracts/call-extraction-schema.md` |
 | Signal Scorecard | v1.0 | Scored signal output format for Module 1A — Active | `contracts/signal-scorecard.md` |
 | Detection Spec | v1.0 | Signal detection specification format — Active | `contracts/detection-spec.md` |
-| Outcome Log | v2.0 | Per-touch outcome tracking schema with enums, natural language input support — Active | `contracts/outcome-log.md` |
-| Performance Update | v2.0 | 5-section performance update format with score update rules, variant analysis, kill/promote criteria — Active | `contracts/performance-update.md` |
+| Outcome Log | v2.0 | Per-touch outcome tracking schema with enums — Active | `contracts/outcome-log.md` |
+| Performance Update | v2.0 | 5-section performance update format with score update rules — Active | `contracts/performance-update.md` |
+
+---
+
+## Prompts (Non-Skill Modules)
+
+| File | Version | Role | Location |
+|------|---------|------|----------|
+| Call Intelligence Extractor | v2.0 | Module 2A — Runs in Clay/Sonnet, not Claude Code | `prompts/call-intelligence-extractor/PROMPT.md` |
+
+Note: Modules 2B, 2C, and 3A also retain their original PROMPT.md files at `prompts/*/PROMPT.md` for reference. The canonical versions are the skill files listed above.
 
 ---
 
@@ -80,5 +94,4 @@ Last updated: 2026-02-15 (Phase 5)
 ## File Status Key
 
 - **Active:** File is in use by the current system
-- **TBD:** Placeholder — contract or prompt structure exists, content not yet built
 - **Archived:** Superseded version, kept for reference only
