@@ -151,7 +151,28 @@ List **7-10 individual signals** that feed into the stacks above. These are the 
 | **Obviousness Level** | [High / Medium / Low — Is this signal something any competent GTM team would already monitor?] |
 | **{TARGET_DOMAIN}-Specific Angle** | [If this signal is obvious, what's the differentiated insight or message {TARGET_DOMAIN} can deliver that a generic outreach cannot?] |
 
-**Conviction Level:** [High / Medium-High / Medium / Low]
+**Signal Score:**
+
+| Dimension | Score (1–5) | Rationale |
+|-----------|-------------|-----------|
+| Volume | [n] | [one-sentence justification referencing estimated annual volume] |
+| Detectability | [n] | [one-sentence justification referencing data source accessibility] |
+| Specificity | [n] | [one-sentence justification referencing causal chain strength] |
+| Timing Precision | [n] | [one-sentence justification referencing peak window clarity] |
+| Actionability | [n] | [one-sentence justification referencing outreach readiness] |
+| **Composite** | **[n.nn]** | Weighted: (Vol×0.20) + (Det×0.25) + (Spec×0.25) + (Tim×0.15) + (Act×0.15) |
+
+*Signals scoring below 2.5 composite are killed. See Section 8 for killed signals.*
+
+**Detection Spec:**
+
+| Field | Spec |
+|-------|------|
+| **Data Source** | [specific platform, database, or feed — name the actual product] |
+| **Query / Filter** | [exact search query or filter criteria, copy-pasteable into the named platform] |
+| **Refresh Cadence** | [Daily / Weekly / Biweekly / Monthly / Event-triggered] |
+| **Monitoring Cost** | [$X/mo tool + Y hrs/mo operator time] |
+| **Automation Feasibility** | [Full / Partial / Manual] — [one sentence on tooling needed] |
 
 **Feeds Into Stack(s):** [Reference which Pain Point stack(s) this signal contributes to]
 
@@ -197,30 +218,7 @@ List **2-3 signals** that predict the conditions for pain *before* the obvious t
 
 ---
 
-### 8. Strategic Recommendations
-
-Provide **3 opinionated recommendations** for GTM execution.
-
-Each must follow "Do X instead of Y because Z" structure. No generic advice.
-
-**Recommendation 1: [Topic]**
-> **Do:** [Specific action]
-> **Instead of:** [What they might otherwise do, or status quo]
-> **Because:** [Strategic rationale grounded in this analysis]
-
-**Recommendation 2: [Topic]**
-> **Do:** [Specific action]
-> **Instead of:** [What they might otherwise do, or status quo]
-> **Because:** [Strategic rationale grounded in this analysis]
-
-**Recommendation 3: [Topic]**
-> **Do:** [Specific action]
-> **Instead of:** [What they might otherwise do, or status quo]
-> **Because:** [Strategic rationale grounded in this analysis]
-
----
-
-### 9. Research Confidence Assessment
+### 8. Research Confidence Assessment
 
 **High confidence areas:**
 [What did you find strong evidence for?]
@@ -230,6 +228,9 @@ Each must follow "Do X instead of Y because Z" structure. No generic advice.
 
 **Signals marked as theoretical:**
 [List any signals where you could not find a recent real-world example]
+
+**Signals killed by scoring:**
+[List any signals that scored below 2.5 composite. For each: signal name, composite score, and which dimension scored lowest with a one-sentence explanation of why it was cut]
 
 **Recommended follow-up research:**
 [Specific questions or data sources to pursue]

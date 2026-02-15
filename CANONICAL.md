@@ -2,7 +2,7 @@
 
 **Rule:** If a file isn't listed here, it doesn't exist in the system.
 
-Last updated: 2026-02-15
+Last updated: 2026-02-15 (Phase 1)
 
 ---
 
@@ -19,8 +19,8 @@ Last updated: 2026-02-15
 
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| Vendor Intelligence Brief (Skill) | v2.0 | Module 1A + 1B — Generates scored intelligence brief with signal validation | `skills/vendor-intelligence-brief/SKILL.md` |
-| Brief Output Template | v2.0 | Output structure for Module 1A | `skills/vendor-intelligence-brief/references/PROMPT_TEMPLATE.md` |
+| Vendor Intelligence Brief (Skill) | v3.0 | Module 1A + 1B — Generates scored intelligence brief with signal validation, scoring, and detection specs | `skills/vendor-intelligence-brief/SKILL.md` |
+| Brief Output Template | v3.0 | Output structure for Module 1A (includes signal scoring + detection spec tables, no Strategic Recommendations section) | `skills/vendor-intelligence-brief/references/PROMPT_TEMPLATE.md` |
 | Example Brief (Bobyard) | v1.0 | Reference example of a completed brief | `skills/vendor-intelligence-brief/references/example-brief-bobyard.md` |
 | Example Signal Validation | v1.0 | Reference example of deep signal validation | `skills/vendor-intelligence-brief/references/example-signal-validation.md` |
 
@@ -60,8 +60,8 @@ No modules built yet. Templates and prompts will be added in Phase 5.
 | File | Version | Role | Location |
 |------|---------|------|----------|
 | Call Extraction Schema | v1.0 | Structured output format for Module 2A | `contracts/call-extraction-schema.md` |
-| Signal Scorecard | v1.0 | Scored signal output format for Module 1A | `contracts/signal-scorecard.md` |
-| Detection Spec | v1.0 | Signal detection specification format | `contracts/detection-spec.md` |
+| Signal Scorecard | v1.0 | Scored signal output format for Module 1A — Active | `contracts/signal-scorecard.md` |
+| Detection Spec | v1.0 | Signal detection specification format — Active | `contracts/detection-spec.md` |
 | Outcome Log | v1.0 | Outbound outcome tracking format for Module 4A | `contracts/outcome-log.md` |
 | Performance Update | v1.0 | Signal score update format for Module 4B | `contracts/performance-update.md` |
 

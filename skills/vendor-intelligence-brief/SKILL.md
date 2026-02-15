@@ -18,7 +18,9 @@ Takes a target company domain as input and produces a deep Strategic Intelligenc
 - The buyer personas with situational qualifiers (not just titles)
 - Signal Stacks — combinations of observable evidence that prove a prospect is in pain
 - Individual validated signals with real-world examples, timing windows, and decay rates
-- Competitive gaps and strategic recommendations
+- Scored signals (5-dimension weighted composite) with cut threshold — signals below 2.5 are killed
+- Detection specs for every surviving signal — where to monitor, what query to run, refresh cadence, cost
+- Competitive gaps
 
 The core question the brief answers: **What observable combinations of evidence indicate a prospect is experiencing the exact pain this vendor solves — before the prospect has started actively shopping?**
 
@@ -58,9 +60,9 @@ Generate the full brief as a draft, including initial signal hypotheses with you
 
 ---
 
-### Step 3b: Signal Validation Loop
+### Step 3b: Signal Validation + Scoring + Detection Spec Loop
 
-After drafting the brief, run a dedicated validation pass on each individual signal (Section 5). This is what separates a useful brief from speculation.
+After drafting the brief, run a dedicated validation pass on each individual signal (Section 5). This is what separates a useful brief from speculation. This step now also populates the Signal Score and Detection Spec for every signal.
 
 **Determine which search tool is available (in priority order):**
 
@@ -89,7 +91,19 @@ After drafting the brief, run a dedicated validation pass on each individual sig
 - Replace placeholder examples with real ones (or mark as "theoretical — no example found")
 - Update volume estimates with actual data
 - Refine the signal definition if validation reveals a better version (e.g., "any estimator posting" may be stronger than "posting open 60+ days")
-- Kill signals that cannot be validated and cannot be logically defended — better to have 6 validated signals than 10 with half theoretical
+
+**Then score each signal (see `contracts/signal-scorecard.md` for full spec):**
+- Score each of the 5 dimensions (Volume, Detectability, Specificity, Timing Precision, Actionability) on a 1–5 scale
+- Calculate the weighted composite: (Vol×0.20) + (Det×0.25) + (Spec×0.25) + (Tim×0.15) + (Act×0.15)
+- Kill signals scoring below 2.5 composite — move them to Section 8 (Research Confidence Assessment) under "Signals killed by scoring" with their score and the reason for the lowest dimension
+- Better to have 6 high-scoring signals than 10 with half below threshold
+
+**Then populate the Detection Spec for every surviving signal (see `contracts/detection-spec.md` for full spec):**
+- Data Source: name the specific platform (not "job boards" — say "Indeed API + LinkedIn Recruiter")
+- Query / Filter: write a copy-pasteable search query for that platform
+- Refresh Cadence: how often to check (Daily / Weekly / Biweekly / Monthly / Event-triggered)
+- Monitoring Cost: tool subscription cost + operator hours per month
+- Automation Feasibility: Full / Partial / Manual with one sentence on tooling needed
 
 ---
 
@@ -99,12 +113,15 @@ Before finalizing the brief, verify:
 - Every signal has a recent real-world example cited, OR is explicitly marked as theoretical
 - Every signal includes volume estimate and GTM motion implication
 - Every signal includes decay rate and late-stage angle
+- **Every signal has all 5 scoring dimensions populated with a composite score calculated**
+- **No signal in the final brief scores below 2.5 composite** — killed signals are listed in Section 8 only
+- **Every surviving signal has a complete Detection Spec** (all 5 fields populated, no "TBD" values)
+- **Detection Spec queries are copy-pasteable** — an operator can run them on the named platform without interpretation
 - Signal Stacks map to specific pain points with clear "current state → desired future" logic
 - At least 2 adjacent/upstream signals included for early-warning detection
 - Buyer personas include situational qualifiers, not just job titles
-- Strategic recommendations follow "Do X instead of Y because Z" format
 - Competitive analysis identifies specific gaps the target can exploit
-- Research confidence assessment is honest about gaps
+- Research confidence assessment is honest about gaps, includes killed signals with scores
 - Validation loop results are incorporated — no signal still has placeholder data if search was available
 
 ### Step 4: Deliver
@@ -130,5 +147,5 @@ These are the failure modes that turn a sharp brief into generic slop. Avoid the
 ## Reference Examples
 
 For a completed brief and a validated signal, see:
-- `References/example-brief-bobyard.md` — Full Strategic Intelligence Brief for bobyard.com
-- `References/example-signal-validation.md` — Deep validation of a single signal (landscape estimator job postings) with specific company examples, volume estimates, and confidence ratings
+- `references/example-brief-bobyard.md` — Full Strategic Intelligence Brief for bobyard.com
+- `references/example-signal-validation.md` — Deep validation of a single signal (landscape estimator job postings) with specific company examples, volume estimates, and confidence ratings
