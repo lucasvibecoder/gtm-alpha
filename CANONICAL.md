@@ -2,7 +2,7 @@
 
 **Rule:** If a file isn't listed here, it doesn't exist in the system.
 
-Last updated: 2026-02-15 (Phase 3)
+Last updated: 2026-02-15 (Phase 4)
 
 ---
 
@@ -40,7 +40,9 @@ Last updated: 2026-02-15 (Phase 3)
 
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| Play Design & PVP Architecture | v2.1 | Module 3A — Designs executable outbound plays | `prompts/play-design/PROMPT.md` |
+| Play Design & PVP Architecture | v3.0 | Module 3A — Executable plays with signal detection, A/B variants, outcome tracking, PVP specs — Active | `prompts/play-design/PROMPT.md` |
+| PVP Generator (Skill) | v1.0 | Module 3B — Produces actual PVP deliverables (competitive audits, signal analyses, benchmarks) from PVP specs — Active | `skills/pvp-generator/SKILL.md` |
+| PVP Output Template | v1.0 | Output structure for Module 3B deliverables | `skills/pvp-generator/references/PVP_OUTPUT_TEMPLATE.md` |
 
 ---
 
