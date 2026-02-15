@@ -2,7 +2,7 @@
 
 **Rule:** If a file isn't listed here, it doesn't exist in the system.
 
-Last updated: 2026-02-15 (Phase 2)
+Last updated: 2026-02-15 (Phase 3)
 
 ---
 
@@ -32,7 +32,7 @@ Last updated: 2026-02-15 (Phase 2)
 |------|---------|------|----------|
 | Call Intelligence Extractor | v2.0 | Module 2A — Clay/Sonnet prompt with Tier 1/Tier 2 extraction split — Active | `prompts/call-intelligence-extractor/PROMPT.md` |
 | Call Intelligence Synthesis | v2.0 | Module 2B — 7-section compressed synthesis, Tier 2-aware — Active | `prompts/call-intelligence-synthesis/PROMPT.md` |
-| Signal & Messaging Reconciliation | v1.0 | Module 2C — Reconciles research hypotheses against call evidence | `prompts/reconciliation/PROMPT.md` |
+| Signal & Messaging Reconciliation | v2.0 | Module 2C — 5-section net-new intelligence, signal score updates, re-scored signal list — Active | `prompts/reconciliation/PROMPT.md` |
 
 ---
 
