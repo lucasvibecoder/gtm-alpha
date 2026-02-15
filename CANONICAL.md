@@ -2,7 +2,7 @@
 
 **Rule:** If a file isn't listed here, it doesn't exist in the system.
 
-Last updated: 2026-02-15 (Phase 1)
+Last updated: 2026-02-15 (Phase 2)
 
 ---
 
@@ -30,8 +30,8 @@ Last updated: 2026-02-15 (Phase 1)
 
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| Call Intelligence Extractor | v2.0 | Module 2A — Clay prompt for extracting buyer intelligence from call transcripts | `prompts/call-intelligence-extractor/PROMPT.md` |
-| Call Intelligence Synthesis | v2.0 | Module 2B — Synthesizes extracted call data across transcripts | `prompts/call-intelligence-synthesis/PROMPT.md` |
+| Call Intelligence Extractor | v2.0 | Module 2A — Clay/Sonnet prompt with Tier 1/Tier 2 extraction split — Active | `prompts/call-intelligence-extractor/PROMPT.md` |
+| Call Intelligence Synthesis | v2.0 | Module 2B — 7-section compressed synthesis, Tier 2-aware — Active | `prompts/call-intelligence-synthesis/PROMPT.md` |
 | Signal & Messaging Reconciliation | v1.0 | Module 2C — Reconciles research hypotheses against call evidence | `prompts/reconciliation/PROMPT.md` |
 
 ---
@@ -59,7 +59,7 @@ No modules built yet. Templates and prompts will be added in Phase 5.
 
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| Call Extraction Schema | v1.0 | Structured output format for Module 2A | `contracts/call-extraction-schema.md` |
+| Call Extraction Schema | v2.0 | Tier 1/Tier 2 schema, full enum registry, data flow, zero unresolved breaking changes — Active | `contracts/call-extraction-schema.md` |
 | Signal Scorecard | v1.0 | Scored signal output format for Module 1A — Active | `contracts/signal-scorecard.md` |
 | Detection Spec | v1.0 | Signal detection specification format — Active | `contracts/detection-spec.md` |
 | Outcome Log | v1.0 | Outbound outcome tracking format for Module 4A | `contracts/outcome-log.md` |
