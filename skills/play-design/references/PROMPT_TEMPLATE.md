@@ -284,6 +284,12 @@ For each of the 3 PVPs:
 **Data Required:**
 [What publicly available information does Module 3B need to research and create this for a specific prospect?]
 
+**Data Source Type:** [Structured / Web Search / Hybrid]
+- **Structured:** Core data comes from APIs, databases, or procurement portals named above. Module 3B MUST query these sources directly — AI web search MUST NOT substitute for named structured sources.
+- **Web Search:** Core data comes from public web (company sites, news, reviews). Module 3B uses standard web search.
+- **Hybrid:** Spec must indicate WHICH data points require structured sources and which allow web search.
+- **Rule:** If the Data Required section names specific databases (SAM.gov, BidPrime, PitchBook, etc.), the Data Source Type MUST be Structured or Hybrid. It cannot be Web Search if named databases exist.
+
 **Research Steps for Module 3B:**
 [Ordered list of what the PVP Generator should research and synthesize to produce this deliverable]
 
@@ -346,6 +352,8 @@ Before delivering this output, verify:
 - [ ] No play could be sent by a competitor without modification
 - [ ] Each play includes objection handling for 2-3 likely objections
 - [ ] Each PVP spec is detailed enough for Module 3B to produce the deliverable without asking questions
+- [ ] Each PVP spec includes a Data Source Type field (Structured / Web Search / Hybrid)
+- [ ] If a PVP spec names specific databases in Data Required, Data Source Type is Structured or Hybrid (not Web Search)
 - [ ] The Play-PVP Pairing Matrix is filled in with deployment timing
 - [ ] Plays connect directly to signals from the Intelligence Input
 

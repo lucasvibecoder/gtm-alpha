@@ -92,6 +92,7 @@ Use this when 15+ discovery call transcripts are available. Call data validates 
 | Detection Spec | Per-signal monitoring specification | `contracts/detection-spec.md` |
 | Outcome Log | Per-touch tracking schema | `contracts/outcome-log.md` |
 | Performance Update | Module 4B output format with score update rules | `contracts/performance-update.md` |
+| Claim Verification | Claim tiers, Verification Ledger, claim budget, STOP_OUTPUT for Module 3B | `contracts/claim-verification.md` |
 
 ---
 
@@ -153,6 +154,7 @@ gtm-alpha/
 ├── .gitignore                            # Ignores runs/* (except README)
 ├── contracts/
 │   ├── call-extraction-schema.md         # Module 2A field spec + enums
+│   ├── claim-verification.md             # Module 3B claim tiers + Verification Ledger
 │   ├── signal-scorecard.md               # Signal scoring dimensions
 │   ├── detection-spec.md                 # Signal detection format
 │   ├── outcome-log.md                    # Outcome tracking schema

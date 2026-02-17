@@ -2,7 +2,7 @@
 
 **Rule:** If a file isn't listed here, it doesn't exist in the system.
 
-Last updated: 2026-02-16 (Module 3C — Execution Blueprint)
+Last updated: 2026-02-17 (Claim Verification Contract + Module 3B/3A/3C updates)
 
 ---
 
@@ -43,12 +43,12 @@ Last updated: 2026-02-16 (Module 3C — Execution Blueprint)
 
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| Play Design & PVP Architecture (Skill) | v3.0 | Module 3A — Executable plays with signal detection, A/B variants, outcome tracking, PVP specs — Active | `skills/play-design/SKILL.md` |
-| Play Design Template | v3.0 | Prompt template for Module 3A | `skills/play-design/references/PROMPT_TEMPLATE.md` |
-| PVP Generator (Skill) | v1.0 | Module 3B — Produces actual PVP deliverables from PVP specs — Active | `skills/pvp-generator/SKILL.md` |
+| Play Design & PVP Architecture (Skill) | v3.1 | Module 3A — Executable plays with signal detection, A/B variants, outcome tracking, PVP specs, Data Source Type — Active | `skills/play-design/SKILL.md` |
+| Play Design Template | v3.1 | Prompt template for Module 3A (added Data Source Type field to PVP specs) | `skills/play-design/references/PROMPT_TEMPLATE.md` |
+| PVP Generator (Skill) | v2.0 | Module 3B — PVP deliverables with claim verification, Verification Ledger, claim budget, STOP_OUTPUT — Active | `skills/pvp-generator/SKILL.md` |
 | PVP Output Template | v1.0 | Output structure for Module 3B deliverables | `skills/pvp-generator/references/PVP_OUTPUT_TEMPLATE.md` |
-| Execution Blueprint (Skill) | v1.0 | Module 3C — Operational blueprint for play execution (sourcing, Clay tables, sending, tracking) — Active | `skills/execution-blueprint/SKILL.md` |
-| Execution Blueprint Template | v1.0 | Output structure for Module 3C (Sections 0-6) | `skills/execution-blueprint/references/PROMPT_TEMPLATE.md` |
+| Execution Blueprint (Skill) | v1.1 | Module 3C — Operational blueprint with Pre-Send QA Protocol (Section 4b) — Active | `skills/execution-blueprint/SKILL.md` |
+| Execution Blueprint Template | v1.1 | Output structure for Module 3C (Sections 0-6 + 4b Pre-Send QA) | `skills/execution-blueprint/references/PROMPT_TEMPLATE.md` |
 | ICP Sourcing Matrix | v1.0 | Reusable reference — maps ICP type to sourcing strategy, tools, costs | `skills/execution-blueprint/references/ICP_SOURCING_MATRIX.md` |
 
 ---
@@ -73,6 +73,7 @@ Last updated: 2026-02-16 (Module 3C — Execution Blueprint)
 | Detection Spec | v1.0 | Signal detection specification format — Active | `contracts/detection-spec.md` |
 | Outcome Log | v2.0 | Per-touch outcome tracking schema with enums — Active | `contracts/outcome-log.md` |
 | Performance Update | v2.0 | 5-section performance update format with score update rules — Active | `contracts/performance-update.md` |
+| Claim Verification | v1.0 | Claim tiers, Verification Ledger spec, claim budget, STOP_OUTPUT policy for Module 3B — Active | `contracts/claim-verification.md` |
 
 ---
 
@@ -99,6 +100,7 @@ All skill output is saved to `runs/{vendor-domain}/`. One folder per vendor, git
 | `{prospect}-{type}.md` | 3B | `runs/{domain}/pvps/{prospect}-{type}.md` |
 | `execution-blueprint-{date}.md` | 3C | `runs/{domain}/execution-blueprint-{date}.md` |
 | `performance-update-{date}.md` | 4B | `runs/{domain}/performance-update-{date}.md` |
+| `bid-radar-pipeline.md` | 3B (pipeline) | `runs/{domain}/bid-radar-pipeline.md` — Structured data pipeline spec for Batch PVPs (replaces web search with APIs) |
 
 See `runs/README.md` for the full convention.
 

@@ -77,6 +77,8 @@ Before finalizing, verify:
 - [ ] Email templates include specific personalization variables
 - [ ] No play could be sent by a competitor without modification
 - [ ] Each PVP spec is detailed enough for Module 3B to produce the deliverable
+- [ ] Each PVP spec includes a Data Source Type field (Structured / Web Search / Hybrid)
+- [ ] If a PVP spec names specific databases in Data Required, Data Source Type is Structured or Hybrid (not Web Search)
 - [ ] Play-PVP Pairing Matrix is complete with deployment timing
 - [ ] If using Module 2C: plays built around highest-scoring signals, buyer language used in copy
 

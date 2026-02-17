@@ -89,6 +89,14 @@ For each PVP from Module 3A, classify into a scalability tier:
 - If the PVP spec has 3+ personalization variables that Clay can fill → Template + Enrich
 - If the PVP spec requires "prospect-specific research" or "competitive audit" → Custom
 
+### Step 5b: Include Pre-Send QA Protocol
+
+Add Section 4b (Pre-Send QA Protocol) to the blueprint output. This section defines what the operator checks before any PVP goes out, by scalability tier (Batch, Template+Enrich, Custom). Pull the QA framework from the prompt template.
+
+For each PVP, flag the 3 highest-risk claims to spot-check — prioritize dates, entity attributions, and dollar amounts. Don't leave claim selection to operator judgment.
+
+Include QA time in the Tuesday/Wednesday time block in Section 6 (Weekly Operating Rhythm).
+
 ### Step 6: Quality Gates
 
 Before finalizing, verify:
@@ -98,6 +106,9 @@ Before finalizing, verify:
 - [ ] Enrichment waterfall specifies order (which tool runs first, what feeds what)
 - [ ] Sending configuration includes warm-up plan and all cold email hygiene rules
 - [ ] Every PVP has a scalability tier with a concrete production workflow
+- [ ] Section 4b Pre-Send QA protocol is included with tier-specific checklists
+- [ ] QA time is included in the Tuesday/Wednesday time block in Section 6
+- [ ] The 3 highest-risk claims per PVP type are flagged (dates, entity attributions, dollar amounts)
 - [ ] Tracking sheet columns map 1:1 to `contracts/outcome-log.md` schema
 - [ ] Weekly rhythm fits within the stated time budget
 - [ ] Blueprint is specific enough to build in one work session — no "determine the best approach" steps
@@ -111,6 +122,7 @@ Tell the user:
 - This blueprint is ready to build — start with Section 3 (sending setup) since warm-up takes 2 weeks
 - While warming up, build Clay tables (Section 2) and start sourcing (Section 1)
 - PVP production (Section 4) can start immediately for Batch-tier PVPs
+- Pre-Send QA (Section 4b) runs before every PVP send — read the tier-specific checklist
 - Outcome tracking (Section 5) should be set up before the first send
 - After 50+ logged touches, run Module 4B (Signal Performance Updater) to close the learning loop
 
