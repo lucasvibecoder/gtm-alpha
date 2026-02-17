@@ -51,20 +51,6 @@ Use this when 15+ discovery call transcripts are available. Call data validates 
 
 ---
 
-## Weekly Operating Rhythm
-
-| Day | Time | Activity |
-|-----|------|----------|
-| **Monday** | 45 min | Check signal monitors. Log new accounts. Update outcome log from last week. |
-| **Tue-Wed** | 60 min | Execute plays against signal-active accounts. Send PVPs. Log each touch. |
-| **Thursday** | 30 min | Review reply/no-reply patterns. Flag underperforming messaging. |
-| **Monthly** | 2 hrs | Run Module 4B. Update signal scores. Kill weak signals. Refresh plays. |
-| **Quarterly** | Half day | Full system refresh. Re-run Module 1A. Reconcile against new call data. Redesign plays. |
-
-Total weekly time: 2-3 hours.
-
----
-
 ## Module Reference
 
 ### Layer 1: Research
