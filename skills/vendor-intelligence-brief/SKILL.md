@@ -127,11 +127,11 @@ Before finalizing the brief, verify:
 ### Step 4: Deliver
 
 Save the brief based on the user's chosen format:
-- **Markdown** (default): Save as `{domain}-gtm-alpha-brief.md`
+- **Markdown** (default): Save as `runs/{domain}/brief.md` (create the directory if it doesn't exist)
 - **Docx**: Read `/mnt/skills/public/docx/SKILL.md`, then generate a formatted Word document
 - **PDF**: Read `/mnt/skills/public/pdf/SKILL.md`, then generate a PDF
 
-Output to `/mnt/user-data/outputs/` and present to the user.
+Present to the user.
 
 ## Anti-Patterns — Things That Make This Brief Useless
 

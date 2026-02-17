@@ -76,7 +76,7 @@ Before finalizing, verify:
 
 ### Step 5: Deliver
 
-Save the reconciliation as `{domain}-reconciliation-{date}.md` and present to the user.
+Save the reconciliation as `runs/{domain}/reconciliation-{date}.md` (create the directory if it doesn't exist) and present to the user.
 
 Tell the user this output feeds into Module 3A (Play Design) — they should use the Re-Scored Signal List as the signal priority order for play design.
 

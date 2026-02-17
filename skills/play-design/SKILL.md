@@ -82,7 +82,7 @@ Before finalizing, verify:
 
 ### Step 5: Deliver
 
-Save the play design as `{domain}-play-design-{date}.md` and present to the user.
+Save the play design as `runs/{domain}/play-design-{date}.md` (create the directory if it doesn't exist) and present to the user.
 
 Tell the user:
 - PVP specs can be run through Module 3B (PVP Generator) to produce actual deliverables

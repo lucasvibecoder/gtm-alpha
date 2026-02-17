@@ -153,6 +153,7 @@ gtm-alpha/
 ├── CANONICAL.md                          # File manifest (source of truth)
 ├── SYSTEM_BUILD_PLAN.md                  # Architecture blueprint
 ├── README.md                             # This file
+├── .gitignore                            # Ignores runs/* (except README)
 ├── contracts/
 │   ├── call-extraction-schema.md         # Module 2A field spec + enums
 │   ├── signal-scorecard.md               # Signal scoring dimensions
@@ -184,6 +185,13 @@ gtm-alpha/
 ├── templates/
 │   ├── outcome-log.json                  # Module 4A empty template
 │   └── pattern-library.md               # Module 4C cross-client patterns
+├── runs/                                 # Output — one folder per vendor (gitignored)
+│   ├── README.md                         # Convention docs (public)
+│   └── {domain}/                         # e.g., bobyard.com/
+│       ├── brief.md                      # Module 1A output
+│       ├── play-design-{date}.md         # Module 3A output
+│       └── pvps/                         # Module 3B deliverables
+│           └── {prospect}-{type}.md
 └── archive/
     └── v2/                               # Archived v1.0 versions
 ```

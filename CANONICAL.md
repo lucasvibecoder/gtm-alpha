@@ -83,6 +83,23 @@ Note: Modules 2B, 2C, and 3A also retain their original PROMPT.md files at `prom
 
 ---
 
+## Output (runs/)
+
+All skill output is saved to `runs/{vendor-domain}/`. One folder per vendor, gitignored except `runs/README.md`.
+
+| File Pattern | Module | Location |
+|---|---|---|
+| `brief.md` | 1A | `runs/{domain}/brief.md` |
+| `call-synthesis-{date}.md` | 2B | `runs/{domain}/call-synthesis-{date}.md` |
+| `reconciliation-{date}.md` | 2C | `runs/{domain}/reconciliation-{date}.md` |
+| `play-design-{date}.md` | 3A | `runs/{domain}/play-design-{date}.md` |
+| `{prospect}-{type}.md` | 3B | `runs/{domain}/pvps/{prospect}-{type}.md` |
+| `performance-update-{date}.md` | 4B | `runs/{domain}/performance-update-{date}.md` |
+
+See `runs/README.md` for the full convention.
+
+---
+
 ## Archive
 
 | Directory | Contents |

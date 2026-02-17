@@ -26,9 +26,10 @@ Ask the user for:
 1. **PVP spec** (required) — Either:
    - Paste the PVP spec from Module 3A output (preferred — contains deliverable definition, data required, research steps)
    - Or describe the deliverable: what type of analysis, who it's for, what it should contain
-2. **Prospect domain** (required) — The company this PVP is being created for (e.g., `acme-landscaping.com`)
-3. **Prospect context** (optional) — Any additional context: prospect name, role, recent signals detected, notes from CRM
-4. **Output format** (optional, default: markdown) — markdown or PDF
+2. **Vendor domain** (required) — The vendor this PVP belongs to (e.g., `bobyard.com`) — determines which `runs/` folder to save into
+3. **Prospect domain** (required) — The company this PVP is being created for (e.g., `acme-landscaping.com`)
+4. **Prospect context** (optional) — Any additional context: prospect name, role, recent signals detected, notes from CRM
+5. **Output format** (optional, default: markdown) — markdown or PDF
 
 If the user already provided these in their message, skip the questions and proceed.
 
@@ -115,7 +116,7 @@ Before finalizing, verify:
 ### Step 7: Deliver
 
 Save the deliverable based on the user's chosen format:
-- **Markdown** (default): Save as `pvp-{prospect-domain}-{pvp-type}.md`
+- **Markdown** (default): Save as `runs/{vendor-domain}/pvps/{prospect-domain}-{pvp-type}.md` (create the directory if it doesn't exist)
 - **PDF**: Read `/mnt/skills/public/pdf/SKILL.md`, then generate a formatted PDF
 
 Present both the cover note and the deliverable file to the user.

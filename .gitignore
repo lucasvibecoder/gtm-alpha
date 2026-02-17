@@ -1,0 +1,3 @@
+# Client output — keep private
+runs/*
+!runs/README.md

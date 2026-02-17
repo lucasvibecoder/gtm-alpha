@@ -77,7 +77,7 @@ Before finalizing, verify:
 
 ### Step 5: Deliver
 
-Save the synthesis report as `{domain}-call-synthesis-{date}.md` and present to the user.
+Save the synthesis report as `runs/{domain}/call-synthesis-{date}.md` (create the directory if it doesn't exist) and present to the user.
 
 Tell the user this output feeds into Module 2C (Reconciliation) — they should run it alongside the Module 1A brief to produce the calibrated intelligence.
 

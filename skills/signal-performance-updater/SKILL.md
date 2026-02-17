@@ -103,7 +103,7 @@ Before finalizing, verify:
 ### Step 5: Deliver
 
 Save the Performance Update report as:
-- **Markdown** (default): `{domain}-performance-update-{date}.md`
+- **Markdown** (default): `runs/{domain}/performance-update-{date}.md` (create the directory if it doesn't exist)
 - Present updated signal scores as a table the user can use to update their Module 1A brief
 
 Tell the user:
