@@ -23,7 +23,8 @@ runs/
 - Folder name = vendor domain (e.g., `bobyard.com`, `ramp.com`)
 - `brief.md` — Module 1A output
 - `play-design-{date}.md` — Module 3A output
-- `execution-handoff.md` — Execution handoff doc
+- `execution-blueprint-{date}.md` — Module 3C output (operational blueprint for play execution)
+- `execution-handoff.md` — Execution handoff doc (legacy)
 - `call-synthesis-{date}.md` — Module 2B output
 - `reconciliation-{date}.md` — Module 2C output
 - `performance-update-{date}.md` — Module 4B output

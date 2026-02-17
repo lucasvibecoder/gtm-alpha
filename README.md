@@ -11,7 +11,7 @@ GTM Alpha v3 is a 4-layer system. Each layer feeds the next.
 ```
 Layer 1: RESEARCH        → Intelligence brief with scored signals and detection specs
 Layer 2: VALIDATION      → Call data validates/calibrates the research (optional)
-Layer 3: EXECUTION       → Executable plays with A/B variants + PVP deliverables
+Layer 3: EXECUTION       → Executable plays + PVP deliverables + operational blueprint
 Layer 4: LEARNING ENGINE → Outcome tracking updates signal scores for next cycle
 ```
 
@@ -25,6 +25,7 @@ Layer 4: LEARNING ENGINE → Outcome tracking updates signal scores for next cyc
 Module 1A (Vendor Intelligence Brief)
     ↓
 Module 3A (Play Design)  →  Module 3B (PVP Generator)
+                         \→  Module 3C (Execution Blueprint)
     ↓
 Module 4A (Outcome Logger)  →  Module 4B (Performance Updater)
 ```
@@ -41,6 +42,7 @@ Module 2A (Call Extractor, runs in Clay)  →  Module 2B (Call Synthesis)
 Module 2C (Reconciliation) ← compares 1A vs 2B
     ↓
 Module 3A (Play Design)  →  Module 3B (PVP Generator)
+                         \→  Module 3C (Execution Blueprint)
     ↓
 Module 4A (Outcome Logger)  →  Module 4B (Performance Updater)
 ```
@@ -85,6 +87,7 @@ Total weekly time: 2-3 hours.
 |--------|------|-------------|----------|
 | **3A** Play Design & PVP Architecture | Skill | 3 executable plays with signal detection, A/B variants, outcome tracking | `skills/play-design/` |
 | **3B** PVP Generator | Skill | Produces actual PVP deliverables from play design specs | `skills/pvp-generator/` |
+| **3C** Execution Blueprint | Skill | Operational blueprint: sourcing, Clay tables, sending config, PVP batching, tracking, weekly rhythm | `skills/execution-blueprint/` |
 
 ### Layer 4: Learning Engine
 
@@ -132,7 +135,15 @@ Take a PVP spec from Module 3A and run Module 3B:
 
 You get an email-ready deliverable — competitive audit, benchmark, or analysis — with zero vendor mentions.
 
-### 4. Track outcomes
+### 4. Build the execution blueprint
+
+Take the Module 3A play design + Module 1A brief and run Module 3C:
+
+> "Build an execution blueprint for bobyard.com" (reference the play design and brief)
+
+You get a step-by-step operations plan: which tools to use for this ICP type, exact Clay table columns, sending tool warm-up plan, PVP production workflow, tracking sheet setup, and a weekly schedule.
+
+### 5. Track outcomes
 
 Log each outbound touch using the outcome log schema (`templates/outcome-log.json`). After 50+ entries, run Module 4B:
 
@@ -140,7 +151,7 @@ Log each outbound touch using the outcome log schema (`templates/outcome-log.jso
 
 You get updated signal scores, variant winners, and kill/promote recommendations.
 
-### 5. Close the loop
+### 6. Close the loop
 
 Updated signal scores feed back into Module 1A for the next brief refresh. Winning messaging feeds into Module 3A for the next play design. The system gets smarter every cycle.
 
@@ -176,6 +187,11 @@ gtm-alpha/
 │   ├── pvp-generator/                    # Module 3B
 │   │   ├── SKILL.md
 │   │   └── references/
+│   ├── execution-blueprint/              # Module 3C
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       ├── PROMPT_TEMPLATE.md
+│   │       └── ICP_SOURCING_MATRIX.md
 │   └── signal-performance-updater/       # Module 4B
 │       ├── SKILL.md
 │       └── references/
@@ -190,6 +206,7 @@ gtm-alpha/
 │   └── {domain}/                         # e.g., bobyard.com/
 │       ├── brief.md                      # Module 1A output
 │       ├── play-design-{date}.md         # Module 3A output
+│       ├── execution-blueprint-{date}.md # Module 3C output
 │       └── pvps/                         # Module 3B deliverables
 │           └── {prospect}-{type}.md
 └── archive/

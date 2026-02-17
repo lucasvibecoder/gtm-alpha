@@ -2,7 +2,7 @@
 
 **Rule:** If a file isn't listed here, it doesn't exist in the system.
 
-Last updated: 2026-02-15 (Phase 6 — Final)
+Last updated: 2026-02-16 (Module 3C — Execution Blueprint)
 
 ---
 
@@ -47,6 +47,9 @@ Last updated: 2026-02-15 (Phase 6 — Final)
 | Play Design Template | v3.0 | Prompt template for Module 3A | `skills/play-design/references/PROMPT_TEMPLATE.md` |
 | PVP Generator (Skill) | v1.0 | Module 3B — Produces actual PVP deliverables from PVP specs — Active | `skills/pvp-generator/SKILL.md` |
 | PVP Output Template | v1.0 | Output structure for Module 3B deliverables | `skills/pvp-generator/references/PVP_OUTPUT_TEMPLATE.md` |
+| Execution Blueprint (Skill) | v1.0 | Module 3C — Operational blueprint for play execution (sourcing, Clay tables, sending, tracking) — Active | `skills/execution-blueprint/SKILL.md` |
+| Execution Blueprint Template | v1.0 | Output structure for Module 3C (Sections 0-6) | `skills/execution-blueprint/references/PROMPT_TEMPLATE.md` |
+| ICP Sourcing Matrix | v1.0 | Reusable reference — maps ICP type to sourcing strategy, tools, costs | `skills/execution-blueprint/references/ICP_SOURCING_MATRIX.md` |
 
 ---
 
@@ -94,6 +97,7 @@ All skill output is saved to `runs/{vendor-domain}/`. One folder per vendor, git
 | `reconciliation-{date}.md` | 2C | `runs/{domain}/reconciliation-{date}.md` |
 | `play-design-{date}.md` | 3A | `runs/{domain}/play-design-{date}.md` |
 | `{prospect}-{type}.md` | 3B | `runs/{domain}/pvps/{prospect}-{type}.md` |
+| `execution-blueprint-{date}.md` | 3C | `runs/{domain}/execution-blueprint-{date}.md` |
 | `performance-update-{date}.md` | 4B | `runs/{domain}/performance-update-{date}.md` |
 
 See `runs/README.md` for the full convention.
