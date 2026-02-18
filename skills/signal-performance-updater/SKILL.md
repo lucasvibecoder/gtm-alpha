@@ -39,6 +39,20 @@ Ask the user for:
 
 If the user provides natural language entries instead of structured JSON, first parse them into the outcome log schema (per `contracts/outcome-log.md`) before proceeding with analysis.
 
+**Input resolution for signal scores (in priority order):**
+1. If the user already provided signal scores in their message, use them.
+2. If the user provides a domain but no signal scores, check for existing runs:
+   - Look for `runs/{domain}/reconciliation-*.md` first (most recent by date in filename = most calibrated scores)
+   - If not found, look for `runs/{domain}/brief.md` (original scores)
+   - If found:
+     - Check the file's last-modified date. If older than 30 days, warn: *"The [file] for {domain} was last updated on [date]. Scores may be outdated. Want to proceed anyway?"*
+     - For `brief.md`: check the first 20 lines for the "⚠️ Unvalidated" marker. If found, warn: *"The existing brief was generated without search validation. Scores may be unreliable."*
+     - If multiple dated reconciliation files exist, use the most recent. Tell the user: *"Found [filename] (last updated [date]) — using this. Say 'use the earlier one' if that's wrong."*
+     - Read and extract the signal scores. Tell the user: *"Using scores from [filename] (last updated [date])."*
+3. If not found, proceed without prior scores (the skill already handles this case).
+
+**Note:** The outcome log itself must still be provided by the user — it doesn't live in `runs/`.
+
 ### Step 2: Data Validation
 
 Before analysis, validate the outcome log:

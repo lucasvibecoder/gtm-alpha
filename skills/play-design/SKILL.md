@@ -31,12 +31,20 @@ This is Module 3A in the GTM Alpha system. It bridges intelligence (Layers 1-2) 
 ### Step 1: Gather Input
 
 Ask the user for:
-1. **Intelligence input** (required) — Either:
-   - Module 1A output (Strategic Brief) — Fast Path, no call data
-   - Module 2C output (Reconciliation with Re-Scored Signal List) — Full Path, preferred
+1. **Intelligence input** (required) — Either Module 1A or Module 2C output
 2. **Target domain** (required) — Which vendor's plays to design
 
-If the user already provided input in their message, skip the questions and proceed.
+**Input resolution (in priority order):**
+1. If the user already provided intelligence input in their message, use it and proceed.
+2. If the user provides just a domain, check for existing runs:
+   - Look for `runs/{domain}/reconciliation-*.md` first (Full Path, preferred — use most recent by date in filename)
+   - If not found, look for `runs/{domain}/brief.md` (Fast Path)
+   - If found:
+     - Check the file's last-modified date. If older than 30 days, warn: *"The [file] for {domain} was last updated on [date]. Signals may be stale. Want to re-run the upstream module first, or proceed with the existing one?"*
+     - For `brief.md`: check the first 20 lines for the "⚠️ Unvalidated" marker. If found, warn: *"The existing brief was generated without search validation. Recommend re-running before using it as input."*
+     - If multiple dated files exist, use the most recent. Tell the user: *"Found [filename] (last updated [date]) — using this. Say 'use the earlier one' if that's wrong."*
+     - Read the file and use it as input. Tell the user: *"Using [filename] (last updated [date])."*
+3. If neither is provided nor found, ask the user to provide the intelligence input.
 
 ### Step 2: Analyze Intelligence
 

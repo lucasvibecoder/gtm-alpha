@@ -31,11 +31,22 @@ This is Module 2C in the GTM Alpha system. It bridges Layer 1 (Research) and Lay
 ### Step 1: Gather Input
 
 Ask the user for:
-1. **Strategic Intelligence Brief** (required) — The full output from Module 1A
-2. **Call Intelligence Synthesis** (required) — The full output from Module 2B
+1. **Strategic Intelligence Brief** (required) — Module 1A output
+2. **Call Intelligence Synthesis** (required) — Module 2B output
 3. **Target domain** (required) — Which vendor this is for
 
-If the user already provided both documents in their message, skip the questions and proceed.
+**Input resolution (in priority order):**
+1. If the user already provided both documents in their message, use them and proceed.
+2. If the user provides just a domain, check for existing runs:
+   - Look for `runs/{domain}/brief.md` (Module 1A)
+   - Look for `runs/{domain}/call-synthesis-*.md` (Module 2B, use most recent by date in filename)
+   - If both found:
+     - Check each file's last-modified date. If either is older than 30 days, warn: *"[filename] was last updated on [date]. Signals may be stale. Want to re-run the upstream module first, or proceed?"*
+     - For `brief.md`: check the first 20 lines for the "⚠️ Unvalidated" marker. If found, warn: *"The existing brief was generated without search validation. Recommend re-running before using it as input."*
+     - If multiple dated call synthesis files exist, use the most recent. Tell the user: *"Found [filename] (last updated [date]) — using this. Say 'use the earlier one' if that's wrong."*
+     - Read both files and proceed. Tell the user: *"Using [filename] (last updated [date])"* for each.
+   - If only one found, tell the user which is missing and ask them to provide it.
+3. If neither found, ask the user to provide both inputs.
 
 ### Step 2: Input Validation
 

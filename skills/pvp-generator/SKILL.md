@@ -23,15 +23,22 @@ This is Module 3B in the GTM Alpha system. It turns PVP concepts into real asset
 ### Step 1: Gather Input
 
 Ask the user for:
-1. **PVP spec** (required) — Either:
-   - Paste the PVP spec from Module 3A output (preferred — contains deliverable definition, data required, research steps)
-   - Or describe the deliverable: what type of analysis, who it's for, what it should contain
+1. **PVP spec** (required) — From Module 3A output or described manually
 2. **Vendor domain** (required) — The vendor this PVP belongs to (e.g., `bobyard.com`) — determines which `runs/` folder to save into
 3. **Prospect domain** (required) — The company this PVP is being created for (e.g., `acme-landscaping.com`)
 4. **Prospect context** (optional) — Any additional context: prospect name, role, recent signals detected, notes from CRM
 5. **Output format** (optional, default: markdown) — markdown or PDF
 
-If the user already provided these in their message, skip the questions and proceed.
+**Input resolution for PVP spec (in priority order):**
+1. If the user already provided a PVP spec in their message, use it and proceed.
+2. If the user provides a vendor domain but no PVP spec, check for existing runs:
+   - Look for `runs/{domain}/play-design-*.md` (use most recent by date in filename if multiple exist)
+   - If found:
+     - Check the file's last-modified date. If older than 30 days, warn: *"The play design for {domain} was last updated on [date]. Signals may be stale. Want to re-run play design first, or proceed with the existing one?"*
+     - If multiple dated files exist, tell the user: *"Found [filename] (last updated [date]) — using this. Say 'use the earlier one' if that's wrong."*
+     - Read it and extract the PVP specs. List them and ask the user which one to generate.
+     - Tell the user: *"Using [filename] (last updated [date])."*
+3. If no play design found, ask the user to provide a PVP spec.
 
 ### Step 2: Understand the Deliverable
 
