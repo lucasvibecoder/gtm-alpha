@@ -105,6 +105,13 @@ After drafting the brief, run a dedicated validation pass on each individual sig
 - Monitoring Cost: tool subscription cost + operator hours per month
 - Automation Feasibility: Full / Partial / Manual with one sentence on tooling needed
 
+**Then assess Operational Feasibility for every surviving signal (immediately after its Detection Spec):**
+- Detection Source: name the specific platform, API, or scraping method in one sentence
+- Extraction Tier: classify as `structured` (API/feed with clean fields), `fragmented` (data exists but spread across sources), `buried` (requires scraping + NLP/AI extraction), or `nonexistent` (no public digital trail)
+- Automation Path: describe in one sentence how to automate detection (e.g., "Clay workflow polling Indeed RSS + aging filter")
+- Feasibility: classify as `high` (can build in a day with existing tools), `medium` (requires custom scripting or multi-tool pipeline), `low` (possible but expensive/brittle), or `manual_only` (human judgment required, no automation path)
+- Each field is ONE SENTENCE MAX — this is a quick operational judgment call, not a research section
+
 ---
 
 ### Step 3c: Quality Gates
@@ -117,6 +124,8 @@ Before finalizing the brief, verify:
 - **No signal in the final brief scores below 2.5 composite** — killed signals are listed in Section 8 only
 - **Every surviving signal has a complete Detection Spec** (all 5 fields populated, no "TBD" values)
 - **Detection Spec queries are copy-pasteable** — an operator can run them on the named platform without interpretation
+- **Every surviving signal has a complete Operational Feasibility block** (all 4 fields populated — Detection Source, Extraction Tier, Automation Path, Feasibility)
+- **Section 8 includes Operational Feasibility Summary** with signal count, market observability classification, strongest automation paths, and manual-only signals listed
 - Signal Stacks map to specific pain points with clear "current state → desired future" logic
 - At least 2 adjacent/upstream signals included for early-warning detection
 - Buyer personas include situational qualifiers, not just job titles

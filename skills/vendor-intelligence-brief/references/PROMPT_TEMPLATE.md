@@ -174,6 +174,15 @@ List **7-10 individual signals** that feed into the stacks above. These are the 
 | **Monitoring Cost** | [$X/mo tool + Y hrs/mo operator time] |
 | **Automation Feasibility** | [Full / Partial / Manual] — [one sentence on tooling needed] |
 
+**Operational Feasibility:**
+
+| Field | Assessment |
+|-------|------------|
+| **Detection Source** | [specific platform/API/scraper — one sentence] |
+| **Extraction Tier** | structured / fragmented / buried / nonexistent |
+| **Automation Path** | [how to automate detection — one sentence max] |
+| **Feasibility** | high / medium / low / manual_only |
+
 **Feeds Into Stack(s):** [Reference which Pain Point stack(s) this signal contributes to]
 
 ---
@@ -232,5 +241,19 @@ List **2-3 signals** that predict the conditions for pain *before* the obvious t
 **Signals killed by scoring:**
 [List any signals that scored below 2.5 composite. For each: signal name, composite score, and which dimension scored lowest with a one-sentence explanation of why it was cut]
 
+**Operational Feasibility Summary:** X of Y signals are programmatically detectable (high/medium feasibility). This is a [high/mixed/low]-observability market. Strongest automation paths: [signal A via tool X], [signal B via tool Y]. Signals requiring manual monitoring: [list].
+
+*Classification: high-observability = 75%+ signals high/medium, mixed = 40-74%, low = <40%*
+
 **Recommended follow-up research:**
 [Specific questions or data sources to pursue]
+
+---
+
+## Run Retro (Complete After Review)
+
+| Signal | Predicted Feasibility | Actual | Gap Type | Learning |
+|--------|----------------------|--------|----------|----------|
+|        |                      |        |          |          |
+
+Gap Types: `market_characteristic` | `skill_gap` | `tool_discovery` | `scoring_error`
