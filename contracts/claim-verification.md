@@ -1,6 +1,6 @@
 # Claim Verification Contract
 
-**Version:** v1.0
+**Version:** v1.1
 **Role:** Defines claim classification, verification rules, the Verification Ledger artifact, claim budgets, and STOP_OUTPUT policy for Module 3B (PVP Generator)
 **Status:** Active
 
@@ -47,8 +47,8 @@ Every Module 3B deliverable MUST produce a Verification Ledger as an internal ap
 ```markdown
 ## Verification Ledger
 
-| claim_text | tier | discovered_via_url | verified_url | entity_on_page | entity_in_claim | as_of_timestamp | status |
-|-----------|------|-------------------|-------------|---------------|----------------|----------------|--------|
+| claim_text | tier | source_tier | discovered_via_url | verified_url | entity_on_page | entity_in_claim | as_of_timestamp | status |
+|-----------|------|------------|-------------------|-------------|---------------|----------------|----------------|--------|
 ```
 
 ### Field Definitions
@@ -57,6 +57,7 @@ Every Module 3B deliverable MUST produce a Verification Ledger as an internal ap
 |-------|------|-------------|
 | `claim_text` | string | The exact text as it would appear in the deliverable |
 | `tier` | enum (multi) | One or more of: `Static`, `Dynamic`, `Attributed` |
+| `source_tier` | enum | `V1` (Verified Public — company site, regulatory site, reputable dataset like BLS, KFF, SEC filings), `V2` (Verified Internal — confirmed by first-party or internal data such as client-provided CRM data, call transcripts), `H` (Hypothesis — plausible but unverified, including industry estimates, AI-generated analysis, extrapolations) |
 | `discovered_via_url` | URL | Where the claim was first found. May be an aggregator (govcb.com, BidPrime listing, Google snippet). For traceability only — does NOT determine PASS/FAIL |
 | `verified_url` | URL | The URL that was actually visited to verify the claim. **This is the field that determines PASS/FAIL.** Must be the original source (procurement portal, agency site, company page) — not an aggregator |
 | `entity_on_page` | string | The entity name as it appears on the `verified_url` page. Use "N/A" for Static claims without entity attribution |
@@ -122,6 +123,20 @@ If a core claim fails verification, do NOT ship a weakened deliverable. Instead:
 
 ---
 
+## Send Rules (Source Tier)
+
+Source tier controls what claims are allowed at each stage of outbound:
+
+| Outbound Stage | Allowed Source Tiers | Rule |
+|---------------|---------------------|------|
+| **Step 1 email** (cold opener) | V1 only | First touch = maximum trust. Only claims from verified public sources. |
+| **Step 2 email** (follow-up with PVP) | V1 + V2 | V2 claims allowed if the PVP deliverable substantiates them with supporting evidence. |
+| **Any stage** | Never H alone | H claims must be reframed as "often / typically / many companies in this space" or removed entirely. H claims never appear as attributed facts. |
+
+**Cover note rule:** Cover note claims must be V1. No H claims in cover notes — ever. If a cover note hook relies on an H claim, find a V1 source or change the hook.
+
+---
+
 ## Failure Propagation Rule
 
 A claim that fails verification at ANY tier **never enters prospect-facing output.** Not as a footnote, not with a caveat, not with "approximately." Failed = excluded. The PVP must still work without that claim — if removing it breaks the deliverable's thesis, the deliverable needs more research, not a lower verification bar.
@@ -131,5 +146,5 @@ A claim that fails verification at ANY tier **never enters prospect-facing outpu
 ## Downstream Consumers
 
 - **Module 3B (PVP Generator):** Step 3b runs the claim verification pass using this contract's rules. Step 6 quality gates enforce ledger completeness, claim budget, and STOP_OUTPUT conditions.
-- **Module 3C (Execution Blueprint):** Pre-Send QA protocol references claim tiers when telling operators which claims to spot-check first (Dynamic and Attributed claims get priority).
+- **Module 3C (Operator Checklist):** Pre-Send QA protocol references claim tiers and source tiers when telling operators which claims to spot-check first (Dynamic and Attributed claims get priority; H claims get flagged for reframing).
 - **Operator QA:** The Verification Ledger gives operators a checklist — click each `verified_url`, confirm the data still matches.

@@ -451,13 +451,15 @@ SYSTEM_BUILD_PLAN   → This file. The blueprint.
 
 | Phase | Module(s) | Status | Date Started | Date Complete |
 |-------|-----------|--------|-------------|---------------|
-| 0.5 | Repo canonicalization, contracts/ folder, CANONICAL.md | Not started | | |
-| 1 | 1A Signal Scoring + Detection Specs, contracts defined | Not started | | |
+| 0.5 | Repo canonicalization, contracts/ folder, CANONICAL.md | Complete | 2026-02-13 | 2026-02-13 |
+| 1 | 1A Signal Scoring + Detection Specs, contracts defined, CLAUDE.md system rules, `[H]` markers | Complete | 2026-02-20 | 2026-02-20 |
 | 2 | 2A Tier Split, 2B Compression, Schema Update | Not started | | |
 | 3 | 2C Reconciliation Rebuild | Not started | | |
-| 4 | 3A Play Upgrade, 3B PVP Generator | Not started | | |
+| 4 | 3A Play Design client-facing rewrite (v4.0), 3B PVP Generator (claim verification + source_tier) | Complete | 2026-02-20 | 2026-02-21 |
 | 5 | 4A Outcome Logger, 4B Performance Updater, 4C Pattern Library | Not started | | |
-| 6 | Final skill conversions, README, CANONICAL update | Not started | | |
+| 6 | Final skill conversions, README, CANONICAL update | Partial — 3C rebuilt as Operator Checklist (v2.0), CANONICAL updated, CLAUDE.md added | 2026-02-21 | |
+
+**Note:** The revamp followed a different sequence than the original build order above. Sessions 1-3 (driven by `REVAMP_BRIEF.md`) prioritized hardening the core output loop (1A → 3A → 3C → 3B) based on lessons from live pipeline runs. Phases 2, 3, and 5 remain as originally planned.
 
 ---
 

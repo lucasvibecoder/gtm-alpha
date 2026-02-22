@@ -98,12 +98,20 @@ Do not move to output until you have specific, cited data points. Generic observ
 ```
 FOR EACH data point collected in Step 3:
 
-  1. CLASSIFY: Is this Static, Dynamic, or Attributed?
+  1. CLASSIFY tier: Is this Static, Dynamic, or Attributed?
      - Contains a date, deadline, "expiring," "currently," "active," "open" → Dynamic
      - Says "[Entity] did/has/posted/issued [thing]" → Attributed
      - Everything else → Static
      - A single claim can be BOTH (e.g., "Dallas Parks contract expiring Feb 28"
        is Dynamic + Attributed)
+
+  1b. CLASSIFY source_tier: V1, V2, or H?
+     - V1 (Verified Public): Found on company site, regulatory site, or
+       reputable dataset (BLS, KFF, SEC filings, government portals)
+     - V2 (Verified Internal): Confirmed by first-party or internal data
+       (client-provided CRM data, call transcripts, internal reports)
+     - H (Hypothesis): Plausible but unverified (industry estimates,
+       AI-generated analysis, extrapolations, inferred from patterns)
 
   2. VERIFY based on tier:
 
@@ -130,16 +138,20 @@ FOR EACH data point collected in Step 3:
          AGGREGATOR_NEEDS_ORIGIN until resolved.
 
   3. RECORD in Verification Ledger:
-     - Add a row per claim: claim_text, tier, discovered_via_url, verified_url,
-       entity_on_page, entity_in_claim, as_of_timestamp, status
+     - Add a row per claim: claim_text, tier, source_tier, discovered_via_url,
+       verified_url, entity_on_page, entity_in_claim, as_of_timestamp, status
      - verified_url = the original source (NOT the aggregator)
      - as_of_timestamp = ISO 8601 of the actual verification moment
+     - source_tier = V1, V2, or H (from step 1b)
      - Claims without a ledger row CANNOT enter the deliverable
 
-  4. ENFORCE Claim Budget:
+  4. ENFORCE Claim Budget + Send Rules:
      - Cover note: max 1-2 high-specificity claims (Dynamic or Attributed).
        Prefer Static. Demote or remove excess.
+     - Cover note: V1 claims ONLY. No H claims in cover notes — ever.
      - Body: cap Dynamic claims at ~3. Remove lowest-confidence if over.
+     - H claims: reframe as "often / typically / many companies in this space"
+       or remove. H claims never appear as attributed facts.
 
   5. CHECK STOP_OUTPUT:
      - IF cover note hook claim status ≠ PASS → STOP
@@ -195,6 +207,9 @@ Before finalizing, verify:
 - [ ] Every Dynamic claim visited at source URL and confirmed current
 - [ ] Every Attributed claim confirmed at source to name the correct entity
 - [ ] No claim cites a URL that does not contain the claimed data
+- [ ] Every claim has a source_tier classification (V1/V2/H)
+- [ ] Cover note claims are V1 only (no H claims in cover notes)
+- [ ] H claims in body are reframed as estimates ("often / typically"), not stated as facts
 - [ ] Cover note contains max 1-2 high-specificity claims (claim budget enforced)
 - [ ] Body contains ≤ 3 Dynamic claims (claim budget enforced)
 - [ ] Cover note contains ONLY claims that passed verification (strict subset of ledger PASS rows)
