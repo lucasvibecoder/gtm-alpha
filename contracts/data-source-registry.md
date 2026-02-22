@@ -157,8 +157,8 @@ These sources are useful across any B2B vertical. They persist in the registry r
 **Tier:** base
 **Cost:** free
 **Last validated:** 2026-02-22
-**Validation status:** partial — API structure confirmed via metadata endpoint, but no live data query run yet (requires API key)
-**Notes:** DOL Open Data Portal (launched 2026-02-19). Free API key required — register at dataportal.dol.gov/api-keys. Auth is via `X-API-KEY` query parameter (not header). Filtering uses `filter_object` JSON param with `{field, operator, value}` syntax. Operators: `eq`, `neq`, `gt`, `lt`, `in`, `not_in`, `like`. Multiple conditions wrapped in `{"and":[...]}`. Response is a root-level JSON array (no wrapper object). Max 10,000 records or 5MB per request.
+**Validation status:** confirmed — live data query returned 240 records for Utah construction (2026-02-22)
+**Notes:** DOL Open Data Portal (launched 2026-02-19). Free API key required — register at dataportal.dol.gov/api-keys. Auth is via `X-API-KEY` query parameter (not header). Filtering uses `filter_object` JSON param with `{field, operator, value}` syntax. Operators: `eq`, `neq`, `gt`, `lt`, `in`, `not_in`, `like`. Multiple conditions wrapped in `{"and":[...]}`. Response is `{"data": [...]}` — records nested under `data` key, no total count field. Max 10,000 records or 5MB per request.
 
 ```json
 {
@@ -201,7 +201,7 @@ These sources are useful across any B2B vertical. They persist in the registry r
   },
   "response_parsing": {
     "count_path": null,
-    "records_path": "root",
+    "records_path": "data",
     "key_fields": ["trade_nm", "street_addr_1_txt", "cty_nm", "st_cd", "naic_cd", "naics_code_description", "bw_atp_amt", "cmp_assd"],
     "pagination": {
       "type": "offset",
@@ -230,8 +230,8 @@ limit=10000&\
 filter_object=$(python3 -c 'import urllib.parse,json; print(urllib.parse.quote(json.dumps({"and":[{"field":"st_cd","operator":"eq","value":"UT"},{"field":"naic_cd","operator":"like","value":"236%"}]})))')"
 ```
 
-Response is a root-level JSON array. Count its length.
-Result: `[V1] 47 concluded WHD actions in Utah construction (NAICS 236). Source: DOL WHD Enforcement, queried 2026-02-22.`
+Response is `{"data": [...]}`. Count `data` array length.
+Result: `[V1] 240 concluded WHD actions in Utah construction (NAICS 236). Source: DOL WHD Enforcement, queried 2026-02-22.`
 
 ---
 
