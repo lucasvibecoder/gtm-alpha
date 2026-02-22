@@ -172,6 +172,8 @@ List **7-10 individual signals** that feed into the stacks above. These are the 
 |-------|------|
 | **Data Source** | [specific platform, database, or feed — name the actual product] |
 | **Query / Filter** | [exact search query or filter criteria, copy-pasteable into the named platform] |
+| **Claim Type** | [from registry vocabulary: job_posting_volume / enforcement_action_volume / company_count_by_size / insurance_rate_data / business_registration_volume / employment_stats / workers_comp_data / funding_events / company_headcount — or new type if none fit] |
+| **Structured Params** | `{"location": [...], "industry": "...", "company_size_min": ..., "company_size_max": ..., "date_range": "...", "query_titles": [...]}` — include only the params relevant to this signal's claim type |
 | **Refresh Cadence** | [Daily / Weekly / Biweekly / Monthly / Event-triggered] |
 | **Monitoring Cost** | [$X/mo tool + Y hrs/mo operator time. **Mark `[H]` if pricing is estimated or unverified.**] |
 | **Automation Feasibility** | [Full / Partial / Manual] — [one sentence on tooling needed] |

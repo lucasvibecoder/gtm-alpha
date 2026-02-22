@@ -1,8 +1,45 @@
 # GTM Alpha — Revamp Brief
 
-**Created:** 2026-02-21
+**Created:** 2026-02-20
+**Last updated:** 2026-02-21 (status tracker added after Sessions 1-3 completed and merged to main)
 **Purpose:** Handoff document for Claude Code. Read this entire file before starting any work. Stay in think mode after reading — propose a plan, don't execute.
 **Source:** Synthesis of live run feedback (helpside.com), session briefing analysis, and cross-conversation brainstorming.
+
+---
+
+## Revamp Status Tracker
+
+Everything below this section is the **original revamp brief** — unchanged. This tracker summarizes what shipped and what's still open.
+
+### Completed (Sessions 1-3, merged to main 2026-02-21)
+
+| Phase | What Shipped | Commit |
+|-------|-------------|--------|
+| Phase 1 (CLAUDE.md) | 5 output rules + audience model in `CLAUDE.md`. `[H]` markers added to 1A brief template. | `d8d6265` |
+| Phase 2 (Output Template Redesign) | 3A rewritten as client-facing doc — plays + PVPs inline, operator detail stripped. 3C gutted from 40-section ops manual → 7-section operator checklist. Output filenames prefixed: `2-play-design-`, `3-operator-checklist-`. | `f98c675`, `8d504f8` |
+| Phase 3 (Unified Claim Classification) | `source_tier` (V1/V2/H) added to verification ledger in `contracts/claim-verification.md` (v1.1). Send rules added. 3B PVP Generator updated with source_tier classification + quality gates. | `8d504f8` |
+
+### Not Started
+
+| Phase | What's Left | Notes |
+|-------|------------|-------|
+| Phase 4 (Validation Layer Architecture) | Design the interface for self-validating claims against real data sources (LinkedIn Sales Nav API, job board APIs, BLS, KFF, state DOL, vertical databases). Lock architecture decisions — don't build yet. | Original brief says "design only." The `[H]` → `[V1]` upgrade path is partially in place via source_tier, but no automated validation exists. |
+| Phase 5 (Legibility Pass) | Rename modules to plain names in CANONICAL.md. Collapse 6 contracts to 2-3. README.md still references old "Execution Blueprint" naming. | Low priority. System works without this. |
+| Phase 6 (Retro Loop) | 60-second brain dump → classify → quick fix pattern. Self-scoring extended beyond 3B. | Depends on more live runs generating feedback. |
+| Phase 7 (Layer 4 Redesign) | Nuke manual JSON logging. Pull from Instantly API instead. Build after enough usage data exists. | DOA as designed — needs API integration, not manual logs. |
+
+### Post-Revamp Feedback (Helpside v2 Run — 2026-02-21)
+
+Issues surfaced during the first run on the revamped templates:
+
+1. **[H] markers still missing on volume estimates.** Numbers like "estimated X companies/month" still generated as facts. System needs stricter enforcement — any number not sourced from a specific URL, API, or operator input gets `[H]`.
+2. **3C: Credit estimates and effort-per-run unsourced.** "X credits per lookup" and "X minutes per PVP" are guesses. These should be **operator inputs** (ask the operator) or omitted. Don't fabricate operational numbers.
+3. **3C: Tool recommendations too prescriptive.** Describe *what* to monitor/detect, not *which tool* to use. The operator knows their stack.
+4. **System gap: No first-party data integration.** No mechanism to combine research data (web search, structured APIs) with first-party data the client could provide (CRM exports, internal metrics, customer lists). PVPs would be significantly stronger with both. This connects to Phase 4 (Validation Layer) — first-party data is a V2 source that the system can't currently ingest.
+
+---
+
+## Original Revamp Brief (unchanged below this line)
 
 ---
 

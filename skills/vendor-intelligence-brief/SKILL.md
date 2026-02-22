@@ -108,6 +108,17 @@ After drafting the brief, run a dedicated validation pass on each individual sig
 - Monitoring Cost: tool subscription cost + operator hours per month
 - Automation Feasibility: Full / Partial / Manual with one sentence on tooling needed
 
+**Then classify for API validation (see `contracts/data-source-registry.md`):**
+- Claim Type: Choose from the standardized vocabulary in the registry's Claim Types table. If none fit, define a new claim type and note it for registry update.
+- Structured Params: Output a JSON block with the variables needed for API validation. Include only params relevant to this signal's claim type. Common params:
+  - `location`: state code or array of state names, depending on the target source
+  - `industry`: NAICS code prefix (e.g., `"236"` for construction)
+  - `company_size_min` / `company_size_max`: employee count range
+  - `query_titles`: array of job title keywords for job posting signals
+  - `date_range`: ISO 8601 start date for time-bounded queries
+  - `state_fips`: FIPS state code for Census queries (e.g., `"49"` for Utah)
+  - `employee_size_class`: Census size class code (e.g., `"232"` for 20-49 employees)
+
 **Then assess Operational Feasibility for every surviving signal (immediately after its Detection Spec):**
 - Detection Source: name the specific platform, API, or scraping method in one sentence
 - Extraction Tier: classify as `structured` (API/feed with clean fields), `fragmented` (data exists but spread across sources), `buried` (requires scraping + NLP/AI extraction), or `nonexistent` (no public digital trail)
@@ -135,7 +146,49 @@ Before finalizing the brief, verify:
 - Competitive analysis identifies specific gaps the target can exploit
 - Research confidence assessment is honest about gaps, includes killed signals with scores
 - Validation loop results are incorporated — no signal still has placeholder data if search was available
+- **Every signal has a `Claim Type` from the registry vocabulary** (or a new type noted for registry update)
+- **Every signal has `Structured Params`** with the relevant variables for its claim type
+- If Step 3d was run: validated signals show `[V1]` with count, source, and timestamp
+- If Step 3d was run: any signal re-scored below 2.5 has been moved to Section 8
 - **Every volume estimate, cost figure, and detection claim is either sourced or marked `[H]`** — no unverified numbers presented as facts
+
+### Step 3d: Empirical Validation (Optional / Re-runnable)
+
+This step grounds the brief in hard data. It reads the Detection Specs from Section 5, matches them to API sources in `contracts/data-source-registry.md`, executes the queries, and upgrades `[H]` markers to `[V1]`.
+
+**Prerequisites:** At least one API key configured (check `contracts/data-source-registry.md` for required env vars). If no keys are available, skip this step — signals keep their `[H]` markers.
+
+**Execution loop — for each signal with a Claim Type and Structured Params:**
+
+1. **Route:** Match the signal's `Claim Type` to registry entries via `validates.claim_types`. Skip if no match or `agent_ready: false`.
+
+2. **Substitute:** Read the registry entry's template (`filter_template`, `body_template`, or `param_template`). Replace each `{{placeholder}}` with the corresponding value from the signal's `Structured Params` (using the `placeholders.maps_to` mapping). Drop any key whose placeholder value is null or absent.
+
+3. **Execute:** Build and run the curl request:
+   - **POST + body_template:** `curl -s -X POST "base_url/endpoint" -H "header: Bearer $key_env_var" -H "Content-Type: application/json" -d 'substituted_body'`
+   - **GET + filter_template:** JSON-stringify the substituted filter, URL-encode it, then: `curl -s "base_url/endpoint?filter_param=encoded_filter&fixed_params&key_param_name=$key_env_var"`
+   - **GET + param_template:** `curl -s "base_url/endpoint?substituted_params&fixed_params&key_param_name=$key_env_var"`
+
+4. **Parse:** Read the response per `response_parsing` rules:
+   - `records_path: "root"` → the response body IS the JSON array (not nested under a key)
+   - `records_path: "data"` (or any string) → extract `response["data"]`
+   - `count_path: null` → count the array length
+   - `count_path: "total"` (or any string) → read `response["total"]`
+
+5. **Update:** Replace the `[H]` marker with `[V1]`:
+   `[V1] {count} {description}. Source: {source_name}, queried {timestamp}.`
+   If the API returned records, include 2-3 examples using `key_fields` as evidence.
+
+6. **Re-score:** If the verified count shifts the Volume dimension score by >1 point, recalculate the Composite Score. If the new composite drops below 2.5, move the signal to Section 8 with the updated score and reason.
+
+7. **Fallback:** If no registry entry matches, or execution fails:
+   - Fall back to web search validation (existing 3b behavior)
+   - If web search finds a promising structured source, append it to the Candidate Sources section of the registry for future promotion
+   - Signal keeps its `[H]` marker
+
+**After the loop:** Report a summary — how many signals validated, how many kept `[H]`, any signals killed by re-scoring, any new candidate sources discovered.
+
+---
 
 ### Step 4: Deliver
 

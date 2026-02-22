@@ -2,7 +2,7 @@
 
 **Rule:** If a file isn't listed here, it doesn't exist in the system.
 
-Last updated: 2026-02-21 (Session 3 revamp — 3C rebuild, 3B source_tier, CLAUDE.md added)
+Last updated: 2026-02-22 (Phase 4 — data source registry, detection spec v1.1, Step 3d validation)
 
 ---
 
@@ -71,7 +71,8 @@ Last updated: 2026-02-21 (Session 3 revamp — 3C rebuild, 3B source_tier, CLAUD
 |------|---------|------|----------|
 | Call Extraction Schema | v2.0 | Tier 1/Tier 2 schema, full enum registry, data flow — Active | `contracts/call-extraction-schema.md` |
 | Signal Scorecard | v1.0 | Scored signal output format for Module 1A — Active | `contracts/signal-scorecard.md` |
-| Detection Spec | v1.0 | Signal detection specification format — Active | `contracts/detection-spec.md` |
+| Detection Spec | v1.1 | Signal detection specification format with Claim Type and Structured Params for Step 3d routing — Active | `contracts/detection-spec.md` |
+| Data Source Registry | v1.0 | Machine-readable catalog of validated API sources for signal validation (Step 3d) — Active | `contracts/data-source-registry.md` |
 | Outcome Log | v2.0 | Per-touch outcome tracking schema with enums — Active | `contracts/outcome-log.md` |
 | Performance Update | v2.0 | 5-section performance update format with score update rules — Active | `contracts/performance-update.md` |
 | Claim Verification | v1.1 | Claim tiers, source tiers (V1/V2/H), Verification Ledger spec, claim budget, send rules, STOP_OUTPUT policy for Module 3B — Active | `contracts/claim-verification.md` |
