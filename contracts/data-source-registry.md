@@ -243,8 +243,8 @@ Result: `[V1] 240 concluded WHD actions in Utah construction (NAICS 236). Source
 **Tier:** base
 **Cost:** freemium:200 credits/month free, $59/mo for 1,500 credits
 **Last validated:** 2026-02-22
-**Validation status:** confirmed
-**Notes:** 1 credit = 1 job record returned. Free tier sufficient for validation-only use (counting volumes). POST endpoint with JSON body. Deduplicates across platforms. Company size filter available.
+**Validation status:** confirmed — live query returned 1,110 results for construction PM/director roles in UT/ID/AZ (2026-02-22)
+**Notes:** 1 credit = 1 job record returned. Free tier: 200 credits/month, max 25 records per query. Use `"include_total_results": true` to get total count without consuming credits proportional to count. Location filter uses `job_location_pattern_or` with SQL LIKE `%` wildcards (NOT glob `*`). State filtering pattern: `["%, UT", "%, AZ", "Utah", "Arizona"]`. POST endpoint with JSON body. Deduplicates across platforms. Company size filter available.
 
 ```json
 {
@@ -264,10 +264,12 @@ Result: `[V1] 240 concluded WHD actions in Utah construction (NAICS 236). Source
     "endpoint": "/v1/jobs/search",
     "body_template": {
       "job_title_or": "{{query_titles}}",
-      "job_location_or": "{{location}}",
+      "job_country_code_or": ["US"],
+      "job_location_pattern_or": "{{location}}",
       "min_employee_count": "{{company_size_min}}",
       "max_employee_count": "{{company_size_max}}",
       "posted_at_gte": "{{date_range}}",
+      "include_total_results": true,
       "limit": 1
     },
     "placeholders": {
@@ -277,7 +279,7 @@ Result: `[V1] 240 concluded WHD actions in Utah construction (NAICS 236). Source
         "required": true
       },
       "{{location}}": {
-        "description": "Array of location strings (state names or cities)",
+        "description": "Array of SQL LIKE location patterns. Use '%, XX' for state codes and full state names. Example: ['%, UT', '%, AZ', 'Utah', 'Arizona']",
         "maps_to": "structured_params.location",
         "required": true
       },
@@ -299,9 +301,9 @@ Result: `[V1] 240 concluded WHD actions in Utah construction (NAICS 236). Source
     }
   },
   "response_parsing": {
-    "count_path": "total",
+    "count_path": "metadata.total_results",
     "records_path": "data",
-    "key_fields": ["job_title", "company_name", "company_url", "location", "posted_at", "employee_count"],
+    "key_fields": ["job_title", "company", "company_domain", "location", "date_posted", "state_code"],
     "pagination": {
       "type": "page",
       "param": "page",
@@ -318,7 +320,7 @@ Result: `[V1] 240 concluded WHD actions in Utah construction (NAICS 236). Source
 **Example Step 3d execution:**
 
 Signal says "~500-1,000 first-time HR hires posted annually across UT/ID/WY/AZ `[H]`."
-Structured Params: `{"query_titles": ["HR Manager", "HR Coordinator", "HR Generalist"], "location": ["Utah", "Idaho", "Wyoming", "Arizona"], "company_size_min": 20, "company_size_max": 150, "date_range": "2025-02-22"}`
+Structured Params: `{"query_titles": ["HR Manager", "HR Coordinator", "HR Generalist"], "location": ["%, UT", "%, ID", "%, WY", "%, AZ", "Utah", "Idaho", "Wyoming", "Arizona"], "company_size_min": 20, "company_size_max": 150, "date_range": "2025-02-22"}`
 
 Step 3d substitutes into body_template and runs:
 
@@ -326,10 +328,10 @@ Step 3d substitutes into body_template and runs:
 curl -s -X POST "https://api.theirstack.com/v1/jobs/search" \
   -H "Authorization: Bearer $THEIRSTACK_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"job_title_or":["HR Manager","HR Coordinator","HR Generalist"],"job_location_or":["Utah","Idaho","Wyoming","Arizona"],"min_employee_count":20,"max_employee_count":150,"posted_at_gte":"2025-02-22","limit":1}'
+  -d '{"job_title_or":["HR Manager","HR Coordinator","HR Generalist"],"job_country_code_or":["US"],"job_location_pattern_or":["%, UT","%, ID","%, WY","%, AZ","Utah","Idaho","Wyoming","Arizona"],"min_employee_count":20,"max_employee_count":150,"posted_at_gte":"2025-02-22","include_total_results":true,"limit":1}'
 ```
 
-Response: `{"total": 312, "data": [...]}`. Read `total` field.
+Response: `{"metadata": {"total_results": 312, ...}, "data": [...]}`. Read `metadata.total_results` field.
 Result: `[V1] 312 matching HR postings across UT/ID/WY/AZ (company size 20-150) in trailing 12 months. Source: TheirStack, queried 2026-02-22.`
 
 ---
