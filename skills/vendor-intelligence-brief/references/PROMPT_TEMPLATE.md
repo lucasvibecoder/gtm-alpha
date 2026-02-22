@@ -20,7 +20,9 @@ Your mental model: **GTM is not about finding people who match a profile. It is 
 
 Single signals are noise. Signal stacks—multiple signals that together prove a scenario—are what create high-conviction outbound.
 
-You are building this brief for a senior GTM strategist who will execute the plays themselves. They do not need tutorials. They need sharp thinking, defensible hypotheses, and strategic clarity.
+You are building this brief for the operator who will execute the plays themselves. This is an internal research document — not shared with clients. System notation and operator-level detail are appropriate.
+
+**`[H]` Marker Rule:** Any volume estimate, cost figure, or detection claim that cannot be traced to a specific source gets an inline `[H]` marker. If a search confirmed the number, cite the source and omit the marker. If the number is extrapolated, estimated, or unverified, `[H]` stays next to it. No unverified numbers presented as facts.
 
 ---
 
@@ -133,7 +135,7 @@ List **7-10 individual signals** that feed into the stacks above. These are the 
 |------------------|--------|
 | **Exists in the wild?** | [Where specifically would you see this announced? Press releases, regulatory databases, job boards, LinkedIn, SEC filings, etc. If typically internal/non-public, flag as detection limitation] |
 | **Recent example?** | [Cite one real instance from the past 18 months. Company name, date, what happened. If you cannot find one, state "No example found—theoretical signal" and demote conviction level] |
-| **Estimated annual volume?** | [How many times per year does this signal fire across the target market? e.g., "~50-100 annually" = low-volume, "~500-1000 annually" = medium-volume, "thousands annually" = high-volume] |
+| **Estimated annual volume?** | [How many times per year does this signal fire across the target market? e.g., "~50-100 annually" = low-volume, "~500-1000 annually" = medium-volume, "thousands annually" = high-volume. **Mark `[H]` if not confirmed by search data.**] |
 | **GTM motion implication?** | [Based on volume: "High-volume → build automated monitoring, templatized outreach" OR "Low-volume → manual tracking, bespoke AE-led response"] |
 
 **Timing & Decay:**
@@ -155,7 +157,7 @@ List **7-10 individual signals** that feed into the stacks above. These are the 
 
 | Dimension | Score (1–5) | Rationale |
 |-----------|-------------|-----------|
-| Volume | [n] | [one-sentence justification referencing estimated annual volume] |
+| Volume | [n] | [one-sentence justification referencing estimated annual volume — carry `[H]` if volume estimate is unverified] |
 | Detectability | [n] | [one-sentence justification referencing data source accessibility] |
 | Specificity | [n] | [one-sentence justification referencing causal chain strength] |
 | Timing Precision | [n] | [one-sentence justification referencing peak window clarity] |
@@ -171,7 +173,7 @@ List **7-10 individual signals** that feed into the stacks above. These are the 
 | **Data Source** | [specific platform, database, or feed — name the actual product] |
 | **Query / Filter** | [exact search query or filter criteria, copy-pasteable into the named platform] |
 | **Refresh Cadence** | [Daily / Weekly / Biweekly / Monthly / Event-triggered] |
-| **Monitoring Cost** | [$X/mo tool + Y hrs/mo operator time] |
+| **Monitoring Cost** | [$X/mo tool + Y hrs/mo operator time. **Mark `[H]` if pricing is estimated or unverified.**] |
 | **Automation Feasibility** | [Full / Partial / Manual] — [one sentence on tooling needed] |
 
 **Operational Feasibility:**

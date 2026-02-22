@@ -24,6 +24,8 @@ Takes a target company domain as input and produces a deep Strategic Intelligenc
 
 The core question the brief answers: **What observable combinations of evidence indicate a prospect is experiencing the exact pain this vendor solves — before the prospect has started actively shopping?**
 
+**Audience:** The brief is an internal operator document — not shared with clients. System notation, `[H]` markers, and operator-level detail are appropriate here. See `CLAUDE.md` for the full audience model.
+
 ## Workflow
 
 ### Step 1: Gather Input
@@ -91,6 +93,7 @@ After drafting the brief, run a dedicated validation pass on each individual sig
 - Replace placeholder examples with real ones (or mark as "theoretical — no example found")
 - Update volume estimates with actual data
 - Refine the signal definition if validation reveals a better version (e.g., "any estimator posting" may be stronger than "posting open 60+ days")
+- **Mark unverified claims with `[H]`.** Any volume estimate, cost figure, or detection claim that wasn't confirmed by the validation search gets an inline `[H]` marker. If the search returned real data, the marker is removed. If the search found nothing or the number is extrapolated, `[H]` stays.
 
 **Then score each signal (see `contracts/signal-scorecard.md` for full spec):**
 - Score each of the 5 dimensions (Volume, Detectability, Specificity, Timing Precision, Actionability) on a 1–5 scale
@@ -132,6 +135,7 @@ Before finalizing the brief, verify:
 - Competitive analysis identifies specific gaps the target can exploit
 - Research confidence assessment is honest about gaps, includes killed signals with scores
 - Validation loop results are incorporated — no signal still has placeholder data if search was available
+- **Every volume estimate, cost figure, and detection claim is either sourced or marked `[H]`** — no unverified numbers presented as facts
 
 ### Step 4: Deliver
 
