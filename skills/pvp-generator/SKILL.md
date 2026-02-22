@@ -32,7 +32,7 @@ Ask the user for:
 **Input resolution for PVP spec (in priority order):**
 1. If the user already provided a PVP spec in their message, use it and proceed.
 2. If the user provides a vendor domain but no PVP spec, check for existing runs:
-   - Look for `runs/{domain}/play-design-*.md` (use most recent by date in filename if multiple exist)
+   - Look for `runs/{domain}/*play-design-*.md` (use most recent by date in filename if multiple exist)
    - If found:
      - Check the file's last-modified date. If older than 30 days, warn: *"The play design for {domain} was last updated on [date]. Signals may be stale. Want to re-run play design first, or proceed with the existing one?"*
      - If multiple dated files exist, tell the user: *"Found [filename] (last updated [date]) — using this. Say 'use the earlier one' if that's wrong."*

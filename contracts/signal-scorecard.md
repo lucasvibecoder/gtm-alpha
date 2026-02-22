@@ -38,7 +38,7 @@ Score range: 1.00–5.00
 
 **Composite score below 2.5 → signal is killed from the final brief output.**
 
-Killed signals are listed in Section 9 (Research Confidence Assessment) under "Signals killed by scoring" with their composite score and the reason for the lowest-scoring dimension. They are not included in Sections 4 or 5.
+Killed signals are listed in Section 8 (Research Confidence Assessment) under "Signals killed by scoring" with their composite score and the reason for the lowest-scoring dimension. They are not included in Sections 4 or 5.
 
 ---
 

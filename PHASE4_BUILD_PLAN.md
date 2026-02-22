@@ -65,7 +65,7 @@ The registry v0.1 draft had several incorrect assumptions. A live API investigat
 | Filter syntax | Direct query params (`state=UT&naics_code=236`) | `filter_object` JSON param: `{"field":"st_cd","operator":"eq","value":"UT"}` |
 | Multiple filters | N/A | Wrap in `{"and":[...]}` array |
 | `count_path` | `"total"` | **`null`** — no total field. Response IS the array. Count the array length. |
-| `records_path` | `"results"` | **`"root"`** — response is a root-level JSON array |
+| `records_path` | `"results"` | **`"data"`** — response is `{"data": [...]}`, records nested under `data` key (confirmed live 2026-02-22) |
 | Pagination max | 100 | **10,000** records (or 5MB, whichever first) |
 | Column: city | `city_nm` | `cty_nm` |
 | Column: NAICS | `naics_code` | `naic_cd` |
