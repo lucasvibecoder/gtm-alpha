@@ -1,13 +1,38 @@
 # Phase 4 Build Plan: Validation Layer + Data Source Registry
 
 **Created:** 2026-02-22
-**Purpose:** Complete handoff document for a fresh context window. Contains every decision, schema, and correction needed to execute the build without re-deriving anything.
+**Status:** BUILT + LIVE. First test completed 2026-02-22 (okland.com run).
 **Branch:** `main`
-**Prerequisite:** Register for a DOL API key at `https://dataportal.dol.gov/registration` and set `export DOL_API_KEY=<your_key>` before running Step 3d.
+
+### Build Status
+
+| Step | File | Status |
+|------|------|--------|
+| 1 | `contracts/data-source-registry.md` | DONE — created, DOL + TheirStack corrections applied from live testing |
+| 2 | `contracts/detection-spec.md` | DONE — v1.1, `claim_type` + `structured_params` added |
+| 3 | `skills/.../PROMPT_TEMPLATE.md` | DONE — Detection Spec table has Claim Type + Structured Params rows |
+| 4 | `skills/.../SKILL.md` | DONE — Step 3b updated, Step 3d added, Step 3c quality gates updated |
+| 5 | `CANONICAL.md` | DONE — registry entry added |
+| 6 | DOL API key | DONE — registered, tested live |
+| 7 | TheirStack API key | DONE — registered, tested live, registry corrections committed |
+| 8 | First live Step 3d run | DONE — okland.com, 2 of 8 signals upgraded to [V1] |
+
+### What's Still Open
+
+- [ ] Add 5 new claim types to registry when structured sources are found: `capital_project_authorization`, `facility_announcement`, `bond_passage`, `mega_project_announcement`, `competitive_event`
+- [ ] Investigate ConstructConnect / Dodge Data as a structured project tracking source (candidate for registry)
+- [ ] Census API key — register and test `gov-census-susb` entry
+- [ ] Promote registry candidates (Cobalt Intelligence, Middesk, ACA Signups) if verified
 
 ---
 
-## What We're Building
+## Design Reference (Historical)
+
+*Everything below is the original handoff doc from the build. Kept for reference — the decisions, schemas, and API investigation results are still accurate.*
+
+---
+
+## What We Built
 
 A **data source registry** that maps signal claim types to validated API endpoints, and a **Step 3d** in the 1A skill that reads the registry, fires queries, and upgrades `[H]` markers to `[V1]` with real counts and timestamps.
 
@@ -225,52 +250,39 @@ Update detection-spec version if appropriate.
 
 ---
 
-## Build Sequence
+## Build Sequence (COMPLETED)
 
-Execute in this order. Each step depends on the previous one.
+All steps executed 2026-02-22. Verified via live API testing.
 
-| Step | File | Action | Why This Order |
-|------|------|--------|---------------|
-| 1 | `contracts/data-source-registry.md` | Create from Downloads draft + apply all DOL corrections from investigation above + schema additions (key_location, count_path null docs) | Registry must exist before skill files can reference it |
-| 2 | `contracts/detection-spec.md` | Add `claim_type` and `structured_params` field definitions | Contract defines the interface before templates implement it |
-| 3 | `skills/vendor-intelligence-brief/references/PROMPT_TEMPLATE.md` | Add `Claim Type` and `Structured Params` rows to Detection Spec table in Section 5 | Template implements the contract |
-| 4 | `skills/vendor-intelligence-brief/SKILL.md` | Update Step 3b (populate new fields) + Add Step 3d (validation loop) + Update Step 3c (quality gates) | Skill file orchestrates everything |
-| 5 | `CANONICAL.md` | Add registry entry + update detection-spec version | Manifest reflects reality |
-
----
-
-## Verification Checklist (Run After Build)
-
-1. Read `contracts/data-source-registry.md` end-to-end — confirm DOL entry has corrected endpoint, auth, filter syntax, column names, response parsing
-2. Read `contracts/detection-spec.md` — confirm `claim_type` and `structured_params` fields are defined
-3. Read the 1A brief template — confirm Detection Spec table has the two new rows
-4. Read the 1A SKILL.md — confirm Step 3b mentions claim type + structured params, Step 3d exists with the full loop, Step 3c has the new quality gates
-5. Read `CANONICAL.md` — confirm registry is listed
-6. Grep for `WHD_whisard` across the repo — should return zero matches (old dataset ID fully replaced)
-7. Grep for `data-source-registry` in SKILL.md — should appear in Step 3d
-8. If DOL API key is available: run the corrected curl command and verify response shape matches registry's `response_parsing`
+| Step | File | Status |
+|------|------|--------|
+| 1 | `contracts/data-source-registry.md` | DONE |
+| 2 | `contracts/detection-spec.md` | DONE (v1.1) |
+| 3 | `skills/vendor-intelligence-brief/references/PROMPT_TEMPLATE.md` | DONE |
+| 4 | `skills/vendor-intelligence-brief/SKILL.md` | DONE |
+| 5 | `CANONICAL.md` | DONE |
 
 ---
 
-## Post-Build: Register for API Key
+## Known Backlog
 
-After the build is complete, register for a DOL API key:
-1. Go to `https://dataportal.dol.gov/registration`
-2. Complete the questionnaire
-3. Get API key from `https://dataportal.dol.gov/api-keys`
-4. Set: `export DOL_API_KEY=<your_key>` in your shell profile
-5. Run the corrected curl from the DOL registry entry to validate the response shape
-6. If response shape differs from registry, update `response_parsing` accordingly
+Items tracked here until resolved. Organized by priority.
 
----
+### Phase 4 — Validation Layer (Next Steps)
 
-## Files Referenced
+- [ ] **Add 5 new claim types to registry.** Identified during okland.com run: `capital_project_authorization`, `facility_announcement`, `bond_passage`, `mega_project_announcement`, `competitive_event`. Need structured API sources before adding full entries — for now they're documented in MEMORY.md.
+- [ ] **Investigate ConstructConnect / Dodge Data.** Structured project tracking database — could provide API access to construction project pipeline data. Would serve `capital_project_authorization` and `facility_announcement` claim types.
+- [ ] **Register for Census API key.** Test `gov-census-susb` registry entry for company count validation.
+- [ ] **Promote registry candidates.** Cobalt Intelligence (KYB), Middesk (business identity), ACA Signups (insurance rates) — verification checklists are in the registry's Candidate Sources section.
 
-| File | Current State | Action |
-|------|--------------|--------|
-| `/Users/lucas/Downloads/data-source-registry.md` | v0.1 draft with DOL + TheirStack + Census + candidates | Source for Step 1 (apply corrections) |
-| `contracts/detection-spec.md` | v1.0 — no claim_type or structured_params | Update in Step 2 |
-| `skills/vendor-intelligence-brief/references/PROMPT_TEMPLATE.md` | Current 1A template — Detection Spec has 5 rows | Update in Step 3 (add 2 rows) |
-| `skills/vendor-intelligence-brief/SKILL.md` | Steps 3b/3c exist, no Step 3d | Update in Step 4 |
-| `CANONICAL.md` | No registry entry | Update in Step 5 |
-| `contracts/data-source-registry.md` | Does not exist yet | Create in Step 1 |
+### Phase 6 — Naming Cleanup (Cosmetic)
+
+- [ ] **README.md** — 5 references to "Execution Blueprint" need to become "Operator Checklist" with updated descriptions.
+- [ ] **runs/README.md** — `execution-blueprint-{date}.md` → `3-operator-checklist-{date}.md`.
+- [ ] **skills/execution-blueprint/ folder** — rename to `skills/operator-checklist/`. Update YAML `name:` field and CANONICAL.md path.
+- [ ] **taxwire.com run** — `execution-blueprint-2026-02-18.md` was never renamed to new convention. Low priority since it's gitignored.
+
+### Run Backlog
+
+- [ ] **okland.com** — 3A play design + 3C operator checklist. 3B needs a specific prospect.
+- [ ] **taxwire.com** — 3B PVP when a prospect is identified.

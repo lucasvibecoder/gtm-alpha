@@ -10,10 +10,10 @@ Last updated: 2026-02-22 (Phase 4 — data source registry, detection spec v1.1,
 
 | File | Version | Role | Location |
 |------|---------|------|----------|
-| System Build Plan | v1.0 | Master blueprint for all build phases | `SYSTEM_BUILD_PLAN.md` |
 | Canonical Manifest | v1.0 | This file. Lists every active file and its role. | `CANONICAL.md` |
 | README | v1.0 | System overview, module reference, quick start guide | `README.md` |
 | CLAUDE.md | v1.0 | System-wide output rules and audience model for Claude Code | `CLAUDE.md` |
+| Phase 4 Build Plan | v1.0 | Validation layer design + active backlog tracker | `PHASE4_BUILD_PLAN.md` |
 
 ---
 
@@ -110,9 +110,12 @@ See `runs/README.md` for the full convention.
 
 ## Archive
 
-| Directory | Contents |
+| Directory / File | Contents |
 |-----------|----------|
 | `archive/v2/` | Dead v1.0 prompt versions (archived for reference, not for use) |
+| `archive/SYSTEM_BUILD_PLAN.md` | Original master blueprint (Phases 0-6). Superseded by PHASE4_BUILD_PLAN.md for active planning. |
+| `archive/REVAMP_BRIEF.md` | Revamp planning doc (Sessions 1-3, all completed 2026-02-21). Decisions captured in memory. |
+| `archive/SESSION_BRIEFING.md` | Feb 19 brainstorm notes that seeded the revamp. Historical. |
 
 ---
 
